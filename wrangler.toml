@@ -1,0 +1,8 @@
+name = "coleta-defensoria"
+compatibility_date = "2024-03-20"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "assistidos-db"
+database_id = "50e8a99e-56b2-46c8-a234-e913b17ea98b"

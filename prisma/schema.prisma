@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Assistido {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  // LOCALIDADE (Núcleo)
+  nucleoRegional String?
+
+  // 1. IDENTIFICAÇÃO
+  nome String
+  nomeSocial String?
+  filiacao String?
+  dataNascimento String?
+  idade String?
+  naturalidade String?
+  genero String?
+  racaEtnia String?
+  estadoCivil String?
+  possuiDeficiencia Boolean?
+  qualDeficiencia String?
+  ilhaPovoado String?
+  endereco String?
+  telefone String?
+  possuiDocumentacao Boolean?
+  documentosQuePossui String?
+  outroDocumento String?
+  numeroRg String?
+  numeroCpf String?
+  nis String?
+  matriculaCertidao String?
+  dataRegistroCertidao String?
+  livroCertidao String?
+  folhaCertidao String?
+  termoCertidao String?
+
+  // 2. SITUAÇÃO HABITACIONAL
+  tempoResidePovoado String?
+  casa String?
+  casaCedidaPorQuem String?
+  tipoHabitacao String?
+  quantosComodosEDescricao String?
+  energiaEletrica String?
+  abastecimentoAgua String?
+  saneamentoBasico String?
+  possuiConexaoInternet Boolean?
+  tipoConexaoInternet String?
+  transporte String?
+
+  // 3. SITUAÇÃO DE TRABALHO E RENDA
+  trabalhaAtualmente Boolean?
+  funcao String?
+  localTrabalho String?
+  modalidadeTrabalho String?
+  seAutonomoFormalInformal String?
+  remuneracao String?
+  exerceTrabalhoDomesticoDomicilio Boolean?
+  recebeBeneficio Boolean?
+  quaisBeneficios String?
+
+  // 4. EDUCAÇÃO
+  escolaridade String?
+  escolaridadePossui String?
+  quaisEscolasServemIlhaPovoados String?
+
+  // 5. DESPESAS
+  despesasEnergiaEletrica String?
+  despesasAgua String?
+  despesasAlimentacao String?
+  despesasOutros String?
+
+  // 6. COMPOSIÇÃO FAMILIAR
+  possuiFilhos Boolean?
+  quantosFilhos String?
+  idadeFilhos String?
+
+  // 7. SAÚDE
+  possuiProblemaSaude Boolean?
+  qualProblemaSaude String?
+  fazTratamento Boolean?
+  fazUsoMedicacao Boolean?
+  quaisMedicacoes String?
+  medicacaoUsoContinuo Boolean?
+  quaisMedicacoesUsoContinuo String?
+  qualPostoSaudeFrequenta String?
+
+  // 8. QUAL A SUA DEMANDA PARA A DEFENSORA
+  demandaDefensora String?
+
+  @@map("assistidos")
+}

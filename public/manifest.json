@@ -1,0 +1,21 @@
+{
+  "name": "Coleta Defensoria",
+  "short_name": "Defensoria",
+  "description": "Sistema de Coleta de Dados para a Defensoria Pública",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0056b3",
+  "icons": [
+    {
+      "src": "/globe.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/globe.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
