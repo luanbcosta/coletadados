@@ -49,16 +49,52 @@ export async function POST(request: Request) {
     if (data.despEnergia) data.despesasEnergiaEletrica = "Sim";
     if (data.despAgua) data.despesasAgua = "Sim";
 
-    // Remover campos extras que não existem no banco para evitar erro do Prisma
-    const extraFields = [
-      "docRG", "docCPF", "docCNH", "docCartaoCidadao", "docCTPS", "docSUS", "docTitulo", 
-      "docCertNasc", "docCertCasam", "benBolsaFamilia", "benBPC", "benOutros", 
-      "despEnergia", "despAgua"
+    // Ajustar campos compostos (Outros)
+    if (data.genero === "Outros" && data.generoOutros) data.genero = data.generoOutros;
+    if (data.casa === "Alugada" && data.valorAluguel) data.casa = "Alugada, R$ " + data.valorAluguel;
+    if (data.tipoHabitacao === "Misto" && data.tipoHabitacaoOutro) data.tipoHabitacao = data.tipoHabitacaoOutro;
+    if (data.energiaEletrica === "Outros" && data.energiaEletricaOutro) data.energiaEletrica = data.energiaEletricaOutro;
+    if (data.abastecimentoAgua === "Outros" && data.abastecimentoAguaOutro) data.abastecimentoAgua = data.abastecimentoAguaOutro;
+    if (data.saneamentoBasico === "Outros" && data.saneamentoBasicoOutro) data.saneamentoBasico = data.saneamentoBasicoOutro;
+    if (data.transporte === "Outros" && data.transporteOutros) data.transporte = data.transporteOutros;
+    if (data.propriedadeInternet) data.tipoConexaoInternet = (data.tipoConexaoInternet || "") + " (" + data.propriedadeInternet + ")";
+    if (data.escolaridadeStatus) data.escolaridade = data.escolaridadeStatus + (data.escolaridadeAno ? " - Ano " + data.escolaridadeAno : "");
+
+    // Filtrar estritamente apenas os campos que existem no schema do Prisma
+    const validKeys = [
+      "nucleoRegional", "nome", "nomeSocial", "filiacao", "dataNascimento", "idade",
+      "naturalidade", "genero", "racaEtnia", "estadoCivil", "possuiDeficiencia",
+      "qualDeficiencia", "ilhaPovoado", "endereco", "telefone", "possuiDocumentacao",
+      "documentosQuePossui", "outroDocumento", "numeroRg", "numeroCpf", "nis",
+      "matriculaCertidao", "dataRegistroCertidao", "livroCertidao", "folhaCertidao",
+      "termoCertidao", "tempoResidePovoado", "casa", "casaCedidaPorQuem",
+      "tipoHabitacao", "quantosComodosEDescricao", "energiaEletrica",
+      "abastecimentoAgua", "saneamentoBasico", "possuiConexaoInternet",
+      "tipoConexaoInternet", "transporte", "trabalhaAtualmente", "funcao",
+      "localTrabalho", "modalidadeTrabalho", "seAutonomoFormalInformal",
+      "remuneracao", "exerceTrabalhoDomesticoDomicilio", "recebeBeneficio",
+      "quaisBeneficios", "escolaridade", "escolaridadePossui",
+      "quaisEscolasServemIlhaPovoados", "despesasEnergiaEletrica", "despesasAgua",
+      "despesasAlimentacao", "despesasOutros", "possuiFilhos", "quantosFilhos",
+      "idadeFilhos", "possuiProblemaSaude", "qualProblemaSaude", "fazTratamento",
+      "fazUsoMedicacao", "quaisMedicacoes", "medicacaoUsoContinuo",
+      "quaisMedicacoesUsoContinuo", "qualPostoSaudeFrequenta", "demandaDefensora"
     ];
-    extraFields.forEach(field => delete data[field]);
+
+    const cleanData: Record<string, any> = {};
+    for (const key of validKeys) {
+      if (data[key] !== undefined && data[key] !== null) {
+        // Garantir que idadeFilhos e quantosFilhos e remuneracao sejam string
+        if (["idadeFilhos", "quantosFilhos", "remuneracao", "idade", "numeroRg", "numeroCpf", "nis", "matriculaCertidao", "livroCertidao", "folhaCertidao", "termoCertidao"].includes(key) && typeof data[key] !== 'string') {
+          cleanData[key] = String(data[key]);
+        } else {
+          cleanData[key] = data[key];
+        }
+      }
+    }
     
     const assistido = await prisma.assistido.create({
-      data: data,
+      data: cleanData,
     });
     
     return NextResponse.json({ success: true, assistido }, { status: 201 });
