@@ -272,9 +272,9 @@ export default function AdminPage() {
             <button 
               onClick={exportToCSV}
               disabled={assistidos.length === 0}
-              className="flex items-center gap-2 bg-green-500 border border-transparent hover:bg-green-400 text-white disabled:opacity-50 disabled:cursor-not-allowed px-5 py-2.5 rounded-md text-sm font-bold transition-colors shadow-sm"
+              className="flex items-center gap-2 bg-white text-[#0f7632] hover:bg-green-50 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md border border-green-100"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
               Exportar CSV
             </button>
           </div>
