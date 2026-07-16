@@ -122,3 +122,28 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+    
+    if (!id) {
+      return NextResponse.json({ success: false, error: 'ID não fornecido' }, { status: 400 });
+    }
+    
+    const prisma = getPrisma(request);
+    
+    await prisma.assistido.delete({
+      where: { id }
+    });
+    
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    console.error('Erro ao deletar assistido:', error);
+    return NextResponse.json(
+      { success: false, error: 'Erro ao deletar o registro' },
+      { status: 500 }
+    );
+  }
+}

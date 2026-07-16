@@ -72,6 +72,32 @@ export default function AdminPage() {
     setTimeout(() => setSelectedAssistido(null), 300);
   };
 
+  const handleDelete = async () => {
+    if (!selectedAssistido) return;
+    
+    if (!window.confirm(`Tem certeza que deseja EXCLUIR DEFINITIVAMENTE o registro de ${selectedAssistido.nome}? Essa ação não pode ser desfeita.`)) {
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/assistidos?id=${selectedAssistido.id}`, {
+        method: "DELETE",
+      });
+      
+      const data = await res.json();
+      if (data.success) {
+        setAssistidos(prev => prev.filter(a => a.id !== selectedAssistido.id));
+        closeSidebar();
+        alert("Registro excluído com sucesso.");
+      } else {
+        alert("Erro ao excluir: " + data.error);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Erro de comunicação ao tentar excluir.");
+    }
+  };
+
   // Helper function to render a field in the sidebar
   const renderField = (label: string, value: any) => {
     if (value === undefined || value === null || value === "" || value === false) return null;
@@ -245,6 +271,16 @@ export default function AdminPage() {
                     <p className="text-sm text-gray-900 whitespace-pre-wrap leading-relaxed">{selectedAssistido.demandaDefensora || "Nenhuma demanda registrada."}</p>
                   </div>
                 </section>
+                
+                <section className="mt-8 pt-6 border-t border-gray-200 flex justify-end print:hidden">
+                  <button 
+                    onClick={handleDelete}
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-red-600 bg-white border border-red-200 rounded-md hover:bg-red-50 hover:text-red-700 transition-colors shadow-sm"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    Excluir Registro
+                  </button>
+                </section>
               </div>
 
             </div>
@@ -272,9 +308,9 @@ export default function AdminPage() {
             <button 
               onClick={exportToCSV}
               disabled={assistidos.length === 0}
-              className="flex items-center gap-2 bg-white text-[#0f7632] hover:bg-green-50 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md border border-green-100"
+              className="flex items-center gap-2 bg-white text-[#0f7632] hover:bg-green-50 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 px-5 py-2 rounded-md text-sm font-bold transition-all shadow-md border border-green-100"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
               Exportar CSV
             </button>
           </div>
