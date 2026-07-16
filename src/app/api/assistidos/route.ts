@@ -2,15 +2,15 @@ import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { PrismaD1 } from '@prisma/adapter-d1';
 
+import { getRequestContext } from '@cloudflare/next-on-pages';
+
 export const runtime = 'edge';
 
 function getPrisma(request: Request) {
   // Extract the DB binding from the Cloudflare edge context
-  // next-on-pages allows us to get environment variables globally or from request context
   const DB = (process.env as any).DB || (request as any).cf?.env?.DB;
   
   if (!DB) {
-    const { getRequestContext } = require('@cloudflare/next-on-pages');
     const dbBinding = getRequestContext().env.DB;
     const adapter = new PrismaD1(dbBinding);
     return new PrismaClient({ adapter });
