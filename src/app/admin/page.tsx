@@ -270,6 +270,11 @@ export default function AdminPage() {
                 </section>
 
                 <section>
+                  <h4 className="text-sm font-bold text-green-800 uppercase tracking-widest border-b-2 border-green-600 pb-2 mb-4">Demanda para a Defensoria</h4>
+                  <div className="bg-green-50/50 border border-green-200 p-5 rounded-md print:bg-transparent print:border-gray-800">
+                    <p className="text-sm text-gray-900 whitespace-pre-wrap leading-relaxed">{selectedAssistido.demandaDefensora || "Nenhuma demanda registrada."}</p>
+                  </div>
+                </section>
               </div>
 
             </div>
