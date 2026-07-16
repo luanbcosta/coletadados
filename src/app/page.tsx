@@ -578,11 +578,7 @@ export default function Home() {
 
         </form>
         
-        <div className="footer-info">
-          Av. Principal, S/N, Residencial Expedito Baquil Tutóia/MA<br/>
-          Telefone: (98) 99171-1801<br/>
-          Email: nucleotutoria@ma.def.br
-        </div>
+
       </div>
     </>
   );
