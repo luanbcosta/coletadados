@@ -253,28 +253,28 @@ export default function AdminPage() {
       </div>
 
       <div className="print:hidden">
-        {/* Professional Header */}
-        <header className="bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm">
+        {/* Professional Header - Dark Green */}
+        <header className="bg-[#0f7632] border-b border-[#0a5c25] sticky top-0 z-20 shadow-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-4">
-              <div className="flex items-center justify-center h-12">
+              <div className="flex items-center justify-center bg-white p-2 rounded-lg shadow-sm h-12 w-auto">
                 <img 
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1lyw865kVhLBNUy0hif11BuVHHQP8chFhC_udwtfnibrGPzsd_ASSNMi_&s=10" 
                   alt="Logo Defensoria" 
-                  className="h-10 object-contain"
+                  className="h-full object-contain"
                 />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-green-900 tracking-tight">Sistema de Gestão</h1>
-                <p className="text-xs font-bold text-green-700 uppercase tracking-widest">Defensoria Pública</p>
+                <h1 className="text-xl font-bold text-white tracking-tight">Sistema de Gestão</h1>
+                <p className="text-xs font-bold text-green-100 uppercase tracking-widest">Defensoria Pública</p>
               </div>
             </div>
             <button 
               onClick={exportToCSV}
               disabled={assistidos.length === 0}
-              className="flex items-center gap-2 bg-white border border-gray-300 hover:bg-green-50 text-gray-700 hover:text-green-800 hover:border-green-300 disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2 rounded-md text-sm font-semibold transition-colors shadow-sm"
+              className="flex items-center gap-2 bg-green-500 border border-transparent hover:bg-green-400 text-white disabled:opacity-50 disabled:cursor-not-allowed px-5 py-2.5 rounded-md text-sm font-bold transition-colors shadow-sm"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
               Exportar CSV
             </button>
           </div>
@@ -286,15 +286,15 @@ export default function AdminPage() {
           {/* Stats & Search Toolbar */}
           <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start sm:items-center mb-6 gap-4">
             <div className="w-full sm:w-auto">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Atendimentos Registrados</h2>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Atendimentos Registrados</h2>
               <p className="text-sm text-gray-500 mt-1">
-                Mostrando <span className="font-semibold text-gray-900">{filteredAssistidos.length}</span> registros no total.
+                Mostrando <span className="font-semibold text-[#0f7632]">{filteredAssistidos.length}</span> registros no total.
               </p>
             </div>
             
             <div className="w-full sm:w-80 md:w-96 relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
@@ -303,7 +303,8 @@ export default function AdminPage() {
                 placeholder="Buscar por nome, CPF ou núcleo..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="block w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-600 focus:border-green-600 sm:text-sm transition-colors shadow-sm"
+                style={{ paddingLeft: '2.5rem' }}
+                className="block w-full pr-3 py-2.5 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0f7632] focus:border-[#0f7632] sm:text-sm transition-colors shadow-sm"
               />
             </div>
           </div>
@@ -312,12 +313,12 @@ export default function AdminPage() {
           <div className="bg-white rounded-md shadow-sm border border-gray-200 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="bg-[#e8f5e9]">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Data do Registro</th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Dados do Assistido</th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Núcleo Regional</th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Demanda Principal</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-[#0f7632] uppercase tracking-wider">Data do Registro</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-[#0f7632] uppercase tracking-wider">Dados do Assistido</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-[#0f7632] uppercase tracking-wider">Núcleo Regional</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-[#0f7632] uppercase tracking-wider">Demanda Principal</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
