@@ -106,7 +106,7 @@ export default function AdminPage() {
                 Ficha Cadastral do Assistido
               </h2>
               <div className="flex gap-2">
-                <button onClick={() => window.print()} className="p-2 text-gray-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-colors border border-transparent hover:border-blue-200" title="Imprimir ficha">
+                <button onClick={() => window.print()} className="p-2 text-gray-600 hover:text-green-700 hover:bg-green-50 rounded-md transition-colors border border-transparent hover:border-green-200" title="Imprimir ficha">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
                 </button>
                 <button onClick={closeSidebar} className="p-2 text-gray-500 hover:text-gray-800 hover:bg-gray-200 rounded-md transition-colors">
@@ -119,6 +119,9 @@ export default function AdminPage() {
             <div className="p-6 flex-1 print:p-0">
               
               <div className="hidden print:block text-center mb-8">
+                <div className="flex justify-center mb-4">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1lyw865kVhLBNUy0hif11BuVHHQP8chFhC_udwtfnibrGPzsd_ASSNMi_&s=10" alt="Logo" className="h-16" />
+                </div>
                 <h1 className="text-2xl font-bold uppercase">Defensoria Pública</h1>
                 <h2 className="text-lg mt-1 font-semibold text-gray-700">Relatório de Atendimento - Ficha Completa</h2>
                 <hr className="my-4 border-gray-800 border-t-2" />
@@ -140,7 +143,7 @@ export default function AdminPage() {
 
               <div className="space-y-8">
                 <section>
-                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-gray-200 pb-2 mb-2">Identificação</h4>
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-green-600 pb-2 mb-2">Identificação</h4>
                   <div className="bg-white">
                     {renderField("Nome Social", selectedAssistido.nomeSocial)}
                     {renderField("Filiação", selectedAssistido.filiacao)}
@@ -159,7 +162,7 @@ export default function AdminPage() {
                 </section>
 
                 <section>
-                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-gray-200 pb-2 mb-2">Documentação</h4>
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-green-600 pb-2 mb-2">Documentação</h4>
                   <div className="bg-white">
                     {renderField("Documentos que Possui", selectedAssistido.documentosQuePossui)}
                     {renderField("Outros Documentos", selectedAssistido.outroDocumento)}
@@ -175,7 +178,7 @@ export default function AdminPage() {
                 </section>
 
                 <section>
-                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-gray-200 pb-2 mb-2">Situação Habitacional</h4>
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-green-600 pb-2 mb-2">Situação Habitacional</h4>
                   <div className="bg-white">
                     {renderField("Tempo Residência (Povoado)", selectedAssistido.tempoResidePovoado)}
                     {renderField("Casa", selectedAssistido.casa)}
@@ -192,7 +195,7 @@ export default function AdminPage() {
                 </section>
 
                 <section>
-                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-gray-200 pb-2 mb-2">Trabalho, Renda e Benefícios</h4>
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-green-600 pb-2 mb-2">Trabalho, Renda e Benefícios</h4>
                   <div className="bg-white">
                     {renderField("Trabalha Atualmente?", selectedAssistido.trabalhaAtualmente)}
                     {renderField("Função", selectedAssistido.funcao)}
@@ -207,7 +210,7 @@ export default function AdminPage() {
                 </section>
 
                 <section>
-                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-gray-200 pb-2 mb-2">Educação e Despesas</h4>
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-green-600 pb-2 mb-2">Educação e Despesas</h4>
                   <div className="bg-white">
                     {renderField("Nível de Escolaridade", selectedAssistido.escolaridadePossui)}
                     {renderField("Status/Série Atual", selectedAssistido.escolaridade)}
@@ -220,7 +223,7 @@ export default function AdminPage() {
                 </section>
 
                 <section>
-                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-gray-200 pb-2 mb-2">Composição Familiar e Saúde</h4>
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b-2 border-green-600 pb-2 mb-2">Composição Familiar e Saúde</h4>
                   <div className="bg-white">
                     {renderField("Possui Filhos?", selectedAssistido.possuiFilhos)}
                     {renderField("Quantos Filhos?", selectedAssistido.quantosFilhos)}
@@ -237,8 +240,8 @@ export default function AdminPage() {
                 </section>
 
                 <section>
-                  <h4 className="text-sm font-bold text-blue-800 uppercase tracking-widest border-b-2 border-blue-200 pb-2 mb-4">Demanda para a Defensoria</h4>
-                  <div className="bg-gray-50 border border-gray-200 p-5 rounded-md print:bg-transparent print:border-gray-800">
+                  <h4 className="text-sm font-bold text-green-800 uppercase tracking-widest border-b-2 border-green-600 pb-2 mb-4">Demanda para a Defensoria</h4>
+                  <div className="bg-green-50/50 border border-green-200 p-5 rounded-md print:bg-transparent print:border-gray-800">
                     <p className="text-sm text-gray-900 whitespace-pre-wrap leading-relaxed">{selectedAssistido.demandaDefensora || "Nenhuma demanda registrada."}</p>
                   </div>
                 </section>
@@ -254,18 +257,22 @@ export default function AdminPage() {
         <header className="bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-4">
-              <div className="bg-[#0056b3] p-2.5 rounded-lg text-white">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+              <div className="flex items-center justify-center h-12">
+                <img 
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1lyw865kVhLBNUy0hif11BuVHHQP8chFhC_udwtfnibrGPzsd_ASSNMi_&s=10" 
+                  alt="Logo Defensoria" 
+                  className="h-10 object-contain"
+                />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900 tracking-tight">Sistema de Gestão</h1>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest">Defensoria Pública</p>
+                <h1 className="text-xl font-bold text-green-900 tracking-tight">Sistema de Gestão</h1>
+                <p className="text-xs font-bold text-green-700 uppercase tracking-widest">Defensoria Pública</p>
               </div>
             </div>
             <button 
               onClick={exportToCSV}
               disabled={assistidos.length === 0}
-              className="flex items-center gap-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2 rounded-md text-sm font-semibold transition-colors shadow-sm"
+              className="flex items-center gap-2 bg-white border border-gray-300 hover:bg-green-50 text-gray-700 hover:text-green-800 hover:border-green-300 disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2 rounded-md text-sm font-semibold transition-colors shadow-sm"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
               Exportar CSV
@@ -296,7 +303,7 @@ export default function AdminPage() {
                 placeholder="Buscar por nome, CPF ou núcleo..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="block w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0056b3] focus:border-[#0056b3] sm:text-sm transition-colors shadow-sm"
+                className="block w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-600 focus:border-green-600 sm:text-sm transition-colors shadow-sm"
               />
             </div>
           </div>
@@ -307,10 +314,10 @@ export default function AdminPage() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Data do Registro</th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Dados do Assistido</th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Núcleo Regional</th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Demanda Principal</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Data do Registro</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Dados do Assistido</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Núcleo Regional</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Demanda Principal</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -318,7 +325,7 @@ export default function AdminPage() {
                     <tr>
                       <td colSpan={4} className="px-6 py-16 text-center">
                         <div className="flex flex-col items-center justify-center">
-                          <svg className="animate-spin h-8 w-8 text-[#0056b3] mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <svg className="animate-spin h-8 w-8 text-green-700 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                           </svg>
@@ -343,7 +350,7 @@ export default function AdminPage() {
                       <tr 
                         key={a.id} 
                         onClick={() => handleRowClick(a)}
-                        className="hover:bg-[#f8fafc] transition-colors cursor-pointer group"
+                        className="hover:bg-green-50/50 transition-colors cursor-pointer group"
                       >
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                           {new Date(a.createdAt).toLocaleDateString('pt-BR')}
@@ -351,11 +358,11 @@ export default function AdminPage() {
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center">
-                            <div className="flex-shrink-0 h-10 w-10 bg-gray-100 rounded-md flex items-center justify-center text-gray-600 font-bold text-sm border border-gray-200 group-hover:border-[#0056b3] group-hover:text-[#0056b3] transition-colors">
+                            <div className="flex-shrink-0 h-10 w-10 bg-gray-100 rounded-md flex items-center justify-center text-gray-600 font-bold text-sm border border-gray-200 group-hover:border-green-600 group-hover:text-green-700 transition-colors">
                               {(a.nome || "?").charAt(0).toUpperCase()}
                             </div>
                             <div className="ml-4">
-                              <div className="text-sm font-semibold text-gray-900 group-hover:text-[#0056b3] transition-colors">{a.nome}</div>
+                              <div className="text-sm font-semibold text-gray-900 group-hover:text-green-700 transition-colors">{a.nome}</div>
                               <div className="text-xs text-gray-500 flex items-center gap-2 mt-1">
                                 {a.numeroCpf ? (
                                   <span className="flex items-center gap-1">
@@ -375,7 +382,7 @@ export default function AdminPage() {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="px-2.5 py-1 inline-flex text-xs leading-4 font-medium rounded-md bg-gray-100 text-gray-800 border border-gray-200">
+                          <span className="px-2.5 py-1 inline-flex text-xs leading-4 font-bold rounded-md bg-green-50 text-green-800 border border-green-200">
                             {a.nucleoRegional || "Não informado"}
                           </span>
                         </td>
