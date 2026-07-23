@@ -7,9 +7,23 @@ export default function Home() {
   const [isOffline, setIsOffline] = useState(false);
   const [pendingSyncCount, setPendingSyncCount] = useState(0);
 
-  // Initialize offline status and check for pending syncs
+  // Initialize offline status, register SW, and check for pending syncs
   useEffect(() => {
-    const handleOnline = () => setIsOffline(false);
+    // Register Service Worker for offline support
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch((err) => {
+        console.error('Service Worker registration failed:', err);
+      });
+    }
+
+    const handleOnline = () => {
+      setIsOffline(false);
+      // Auto-sync when connection is restored
+      const pending = JSON.parse(localStorage.getItem("assistidos_pendentes") || "[]");
+      if (pending.length > 0) {
+        syncData();
+      }
+    };
     const handleOffline = () => setIsOffline(true);
 
     window.addEventListener("online", handleOnline);

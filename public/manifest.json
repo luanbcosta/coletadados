@@ -1,11 +1,11 @@
 {
-  "name": "Coleta Defensoria",
-  "short_name": "Defensoria",
-  "description": "Sistema de Coleta de Dados para a Defensoria Pública",
+  "name": "Defensoria Pública - Coleta de Dados",
+  "short_name": "DPE Coleta",
+  "description": "Sistema de Coleta de Dados para a Defensoria Pública do Maranhão",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0056b3",
+  "theme_color": "#0f7632",
   "icons": [
     {
       "src": "/globe.svg",
