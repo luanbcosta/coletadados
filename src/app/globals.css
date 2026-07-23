@@ -218,22 +218,50 @@ textarea:focus {
   font-weight: bold;
 }
 
+/* Responsividade para Tablets */
+@media (max-width: 1024px) {
+  .container {
+    padding: 30px;
+    max-width: 95%;
+  }
+  /* Garante que os inputs inline não quebrem a tela em tablets */
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group input[type="date"] {
+    min-width: 120px;
+  }
+}
+
+/* Responsividade para Celulares e Tablets pequenos */
 @media (max-width: 768px) {
   body {
     padding: 10px;
   }
   .container {
-    padding: 20px;
+    padding: 15px;
+    max-width: 100%;
   }
   .form-group {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
   }
-  .form-group input[type="text"] {
+  .form-group label {
+    margin-left: 0 !important;
+  }
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group input[type="date"],
+  .form-group select {
     width: 100%;
+    margin-left: 0 !important;
   }
   .radio-group {
     margin-left: 0;
     flex-wrap: wrap;
+    gap: 10px;
+  }
+  .section-title {
+    font-size: 1rem;
   }
 }

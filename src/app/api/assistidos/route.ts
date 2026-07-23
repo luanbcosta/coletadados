@@ -33,6 +33,7 @@ export async function POST(request: Request) {
     if (data.docCartaoCidadao) docs.push("Cartão Cidadão");
     if (data.docCTPS) docs.push("CTPS");
     if (data.docSUS) docs.push("SUS");
+    if (data.docCarteiraIdoso) docs.push("Carteira do Idoso");
     if (data.docTitulo) docs.push("Título de Eleitor");
     if (data.docCertNasc) docs.push("Certidão de Nascimento");
     if (data.docCertCasam) docs.push("Certidão de Casamento");
@@ -62,7 +63,7 @@ export async function POST(request: Request) {
 
     // Filtrar estritamente apenas os campos que existem no schema do Prisma
     const validKeys = [
-      "nucleoRegional", "nome", "nomeSocial", "filiacao", "dataNascimento", "idade",
+      "nucleoRegional", "povoado", "nome", "nomeSocial", "filiacao", "dataNascimento", "idade",
       "naturalidade", "genero", "racaEtnia", "estadoCivil", "possuiDeficiencia",
       "qualDeficiencia", "ilhaPovoado", "endereco", "telefone", "possuiDocumentacao",
       "documentosQuePossui", "outroDocumento", "numeroRg", "numeroCpf", "nis",
@@ -78,7 +79,9 @@ export async function POST(request: Request) {
       "despesasAlimentacao", "despesasOutros", "possuiFilhos", "quantosFilhos",
       "idadeFilhos", "possuiProblemaSaude", "qualProblemaSaude", "fazTratamento",
       "fazUsoMedicacao", "quaisMedicacoes", "medicacaoUsoContinuo",
-      "quaisMedicacoesUsoContinuo", "qualPostoSaudeFrequenta", "demandaDefensora"
+      "quaisMedicacoesUsoContinuo", "qualPostoSaudeFrequenta",
+      "possuiPostoSaude", "possuiAgenteSaude", "nomeAgenteSaude",
+      "demandaDefensoria", "demandasPosteriores", "orgaoEncaminhado"
     ];
 
     const cleanData: Record<string, any> = {};

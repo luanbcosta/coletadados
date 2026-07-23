@@ -18,6 +18,7 @@ model Assistido {
 
   // LOCALIDADE (Núcleo)
   nucleoRegional String?
+  povoado        String?
 
   // 1. IDENTIFICAÇÃO
   nome String
@@ -95,9 +96,17 @@ model Assistido {
   medicacaoUsoContinuo Boolean?
   quaisMedicacoesUsoContinuo String?
   qualPostoSaudeFrequenta String?
+  possuiPostoSaude        Boolean?
+  possuiAgenteSaude       Boolean?
+  nomeAgenteSaude         String?
+  temCartaoSus            Boolean?
+  temLaudoMedico          Boolean?
+  precisaDeTransporte     Boolean?
 
-  // 8. QUAL A SUA DEMANDA PARA A DEFENSORA
-  demandaDefensora String?
+  // 8. QUAL A SUA DEMANDA PARA A DEFENSORIA
+  demandaDefensoria String?
+  demandasPosteriores String?
+  orgaoEncaminhado String?
 
   @@map("assistidos")
 }
