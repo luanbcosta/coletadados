@@ -167,8 +167,9 @@ export default function Home() {
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1lyw865kVhLBNUy0hif11BuVHHQP8chFhC_udwtfnibrGPzsd_ASSNMi_&s=10" alt="Logo Defensoria Pública do Maranhão" />
             </div>
             <h1 style={{fontSize: '1.1rem', whiteSpace: 'nowrap'}}>DEFENSORIA PÚBLICA DO ESTADO DO MARANHÃO</h1>
+            <h2 style={{fontSize: '0.95rem', fontWeight: 600, marginTop: '4px', color: '#555'}}>Ficha de Coleta de Dados - Atendimento ao Assistido</h2>
 
-            {/* Núcleo Regional e Povoado - alinhados à esquerda */}
+            {/* Núcleo Regional e Povoado/Comunidade - alinhados à esquerda */}
             <div style={{marginTop: '18px', display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'flex-start', alignItems: 'center'}}>
               <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
                 <h2 style={{fontSize: '0.95rem', whiteSpace: 'nowrap'}}>NÚCLEO REGIONAL:</h2>
@@ -191,7 +192,7 @@ export default function Home() {
                 />
               </div>
               <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
-                <h2 style={{fontSize: '0.95rem', whiteSpace: 'nowrap'}}>POVOADO:</h2>
+                <h2 style={{fontSize: '0.95rem', whiteSpace: 'nowrap'}}>POVOADO/COMUNIDADE:</h2>
                 <input 
                   type="text" 
                   name="povoado" 
@@ -230,7 +231,7 @@ export default function Home() {
           </div>
           
           <div className="form-group">
-            <label>DATA DE NASCIMENTO:</label>
+            <label>DATA NASC.:</label>
             <input type="date" name="dataNascimento" value={formData.dataNascimento || ''} onChange={handleChange} />
             
             <label style={{marginLeft: '15px'}}>IDADE:</label>
@@ -243,8 +244,8 @@ export default function Home() {
           <div className="form-group">
             <label>GÊNERO:</label>
             <div className="radio-group">
-              <label className="radio-label"><input type="radio" name="genero" value="Feminino" onChange={(e) => handleRadioChange("genero", e.target.value)} checked={formData.genero === "Feminino"} /> Feminino</label>
-              <label className="radio-label"><input type="radio" name="genero" value="Masculino" onChange={(e) => handleRadioChange("genero", e.target.value)} checked={formData.genero === "Masculino"} /> Masculino</label>
+              <label className="radio-label"><input type="radio" name="genero" value="Masc" onChange={(e) => handleRadioChange("genero", e.target.value)} checked={formData.genero === "Masc"} /> Masc</label>
+              <label className="radio-label"><input type="radio" name="genero" value="Fem" onChange={(e) => handleRadioChange("genero", e.target.value)} checked={formData.genero === "Fem"} /> Fem</label>
               <label className="radio-label"><input type="radio" name="genero" value="Outros" onChange={(e) => handleRadioChange("genero", e.target.value)} checked={formData.genero === "Outros"} /> Outros</label>
             </div>
             {formData.genero === "Outros" && (
@@ -255,47 +256,55 @@ export default function Home() {
           <div className="form-group">
             <label>RAÇA/ETNIA:</label>
             <div className="radio-group">
-              <label className="radio-label"><input type="radio" name="racaEtnia" value="BRANCO(A)" onChange={(e) => handleRadioChange("racaEtnia", e.target.value)} checked={formData.racaEtnia === "BRANCO(A)"} /> BRANCO(A)</label>
-              <label className="radio-label"><input type="radio" name="racaEtnia" value="NEGRO(A)" onChange={(e) => handleRadioChange("racaEtnia", e.target.value)} checked={formData.racaEtnia === "NEGRO(A)"} /> NEGRO(A)</label>
-              <label className="radio-label"><input type="radio" name="racaEtnia" value="PARDO(A)" onChange={(e) => handleRadioChange("racaEtnia", e.target.value)} checked={formData.racaEtnia === "PARDO(A)"} /> PARDO(A)</label>
-              <label className="radio-label"><input type="radio" name="racaEtnia" value="INDÍGENA" onChange={(e) => handleRadioChange("racaEtnia", e.target.value)} checked={formData.racaEtnia === "INDÍGENA"} /> INDÍGENA</label>
-              <label className="radio-label"><input type="radio" name="racaEtnia" value="OUTROS" onChange={(e) => handleRadioChange("racaEtnia", e.target.value)} checked={formData.racaEtnia === "OUTROS"} /> OUTROS</label>
+              <label className="radio-label"><input type="radio" name="racaEtnia" value="Branca" onChange={(e) => handleRadioChange("racaEtnia", e.target.value)} checked={formData.racaEtnia === "Branca"} /> Branca</label>
+              <label className="radio-label"><input type="radio" name="racaEtnia" value="Preta" onChange={(e) => handleRadioChange("racaEtnia", e.target.value)} checked={formData.racaEtnia === "Preta"} /> Preta</label>
+              <label className="radio-label"><input type="radio" name="racaEtnia" value="Parda" onChange={(e) => handleRadioChange("racaEtnia", e.target.value)} checked={formData.racaEtnia === "Parda"} /> Parda</label>
+              <label className="radio-label"><input type="radio" name="racaEtnia" value="Amarela" onChange={(e) => handleRadioChange("racaEtnia", e.target.value)} checked={formData.racaEtnia === "Amarela"} /> Amarela</label>
+              <label className="radio-label"><input type="radio" name="racaEtnia" value="Indígena" onChange={(e) => handleRadioChange("racaEtnia", e.target.value)} checked={formData.racaEtnia === "Indígena"} /> Indígena</label>
             </div>
           </div>
 
           <div className="form-group">
             <label>ESTADO CIVIL:</label>
-            <input type="text" name="estadoCivil" value={formData.estadoCivil || ''} onChange={handleChange} />
+            <div className="radio-group" style={{flexWrap: 'wrap'}}>
+              <label className="radio-label"><input type="radio" name="estadoCivil" value="Solteiro" onChange={(e) => handleRadioChange("estadoCivil", e.target.value)} checked={formData.estadoCivil === "Solteiro"} /> Solteiro</label>
+              <label className="radio-label"><input type="radio" name="estadoCivil" value="Casado" onChange={(e) => handleRadioChange("estadoCivil", e.target.value)} checked={formData.estadoCivil === "Casado"} /> Casado</label>
+              <label className="radio-label"><input type="radio" name="estadoCivil" value="Divorciado" onChange={(e) => handleRadioChange("estadoCivil", e.target.value)} checked={formData.estadoCivil === "Divorciado"} /> Divorciado</label>
+              <label className="radio-label"><input type="radio" name="estadoCivil" value="Viúvo" onChange={(e) => handleRadioChange("estadoCivil", e.target.value)} checked={formData.estadoCivil === "Viúvo"} /> Viúvo</label>
+              <label className="radio-label"><input type="radio" name="estadoCivil" value="União Estável" onChange={(e) => handleRadioChange("estadoCivil", e.target.value)} checked={formData.estadoCivil === "União Estável"} /> União Estável</label>
+            </div>
           </div>
 
           <div className="form-group">
-            <label>POSSUI ALGUMA DEFICIÊNCIA:</label>
+            <label>POSSUI DEFICIÊNCIA?</label>
             <div className="radio-group">
-              <label className="radio-label"><input type="radio" name="possuiDeficiencia" value="false" onChange={() => handleRadioChange("possuiDeficiencia", false)} checked={formData.possuiDeficiencia === false} /> Não</label>
               <label className="radio-label"><input type="radio" name="possuiDeficiencia" value="true" onChange={() => handleRadioChange("possuiDeficiencia", true)} checked={formData.possuiDeficiencia === true} /> Sim</label>
+              <label className="radio-label"><input type="radio" name="possuiDeficiencia" value="false" onChange={() => handleRadioChange("possuiDeficiencia", false)} checked={formData.possuiDeficiencia === false} /> Não</label>
             </div>
             {formData.possuiDeficiencia === true && (
               <>
-                <label style={{marginLeft: '15px'}}>QUAL:</label>
+                <label style={{marginLeft: '15px'}}>QUAL?</label>
                 <input type="text" name="qualDeficiencia" value={formData.qualDeficiencia || ''} onChange={handleChange} />
               </>
             )}
           </div>
 
           <div className="form-group full-width">
-            <label>ILHA/POVOADO:</label>
-            <input type="text" name="ilhaPovoado" value={formData.ilhaPovoado || ''} onChange={handleChange} />
+            <label>ENDEREÇO:</label>
+            <input type="text" name="endereco" value={formData.endereco || ''} onChange={handleChange} />
           </div>
 
           <div className="form-group full-width">
-            <label>ENDEREÇO:</label>
-            <input type="text" name="endereco" value={formData.endereco || ''} onChange={handleChange} />
+            <label>ILHA/POVOADO:</label>
+            <input type="text" name="ilhaPovoado" value={formData.ilhaPovoado || ''} onChange={handleChange} />
             <label style={{marginLeft: '15px'}}>TELEFONE:</label>
             <input type="text" name="telefone" value={formData.telefone || ''} onChange={handleChange} />
           </div>
 
+          <div className="section-title">2. DOCUMENTAÇÃO</div>
+
           <div className="form-group">
-            <label>POSSUI DOCUMENTAÇÃO:</label>
+            <label>POSSUI DOCUMENTAÇÃO BÁSICA?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="possuiDocumentacao" value="true" onChange={() => handleRadioChange("possuiDocumentacao", true)} checked={formData.possuiDocumentacao === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="possuiDocumentacao" value="false" onChange={() => handleRadioChange("possuiDocumentacao", false)} checked={formData.possuiDocumentacao === false} /> Não</label>
@@ -304,18 +313,19 @@ export default function Home() {
 
           {formData.possuiDocumentacao === true && (
             <div className="form-group full-width" style={{display: 'block'}}>
-              <label style={{display: 'block', marginBottom: '10px'}}>DOCUMENTOS QUE POSSUI:</label>
+              <label style={{display: 'block', marginBottom: '10px'}}>SE SIM, ASSINALE:</label>
               <div className="radio-group" style={{flexWrap: 'wrap', marginBottom: '10px', marginLeft: 0}}>
                 <label className="radio-label"><input type="checkbox" name="docRG" onChange={handleChange} checked={!!formData.docRG} /> RG</label>
                 <label className="radio-label"><input type="checkbox" name="docCPF" onChange={handleChange} checked={!!formData.docCPF} /> CPF</label>
-                <label className="radio-label"><input type="checkbox" name="docCNH" onChange={handleChange} checked={!!formData.docCNH} /> CNH</label>
-                <label className="radio-label"><input type="checkbox" name="docCartaoCidadao" onChange={handleChange} checked={!!formData.docCartaoCidadao} /> Cartão Cidadão</label>
+                <label className="radio-label"><input type="checkbox" name="docNIS" onChange={handleChange} checked={!!formData.docNIS} /> NIS</label>
+                <label className="radio-label"><input type="checkbox" name="docTitulo" onChange={handleChange} checked={!!formData.docTitulo} /> Título de Eleitor</label>
                 <label className="radio-label"><input type="checkbox" name="docCTPS" onChange={handleChange} checked={!!formData.docCTPS} /> CTPS</label>
-                <label className="radio-label"><input type="checkbox" name="docSUS" onChange={handleChange} checked={!!formData.docSUS} /> Cartão do SUS</label>
+                <label className="radio-label"><input type="checkbox" name="docSUS" onChange={handleChange} checked={!!formData.docSUS} /> SUS</label>
+                <label className="radio-label"><input type="checkbox" name="docCartaoCidadao" onChange={handleChange} checked={!!formData.docCartaoCidadao} /> Cartão Cidadão</label>
                 <label className="radio-label"><input type="checkbox" name="docCarteiraIdoso" onChange={handleChange} checked={!!formData.docCarteiraIdoso} /> Carteira do Idoso</label>
-                <label className="radio-label"><input type="checkbox" name="docTitulo" onChange={handleChange} checked={!!formData.docTitulo} /> TÍTULO DE ELEITOR</label>
-                <label className="radio-label"><input type="checkbox" name="docCertNasc" onChange={handleChange} checked={!!formData.docCertNasc} /> CERTIDÃO DE NASCIMENTO</label>
-                <label className="radio-label"><input type="checkbox" name="docCertCasam" onChange={handleChange} checked={!!formData.docCertCasam} /> CERTIDÃO DE CASAMENTO</label>
+                <label className="radio-label"><input type="checkbox" name="docCertNasc" onChange={handleChange} checked={!!formData.docCertNasc} /> Certidão de Nascimento</label>
+                <label className="radio-label"><input type="checkbox" name="docCertCasam" onChange={handleChange} checked={!!formData.docCertCasam} /> Certidão de Casamento</label>
+                <label className="radio-label"><input type="checkbox" name="docCertObito" onChange={handleChange} checked={!!formData.docCertObito} /> Certidão de Óbito</label>
               </div>
               <div style={{display: 'flex', alignItems: 'center'}}>
                 <label>OUTROS:</label>
@@ -329,107 +339,31 @@ export default function Home() {
             <input type="text" name="numeroRg" value={formData.numeroRg || ''} onChange={handleChange} />
             <label style={{marginLeft: '15px'}}>Nº CPF:</label>
             <input type="text" name="numeroCpf" value={formData.numeroCpf || ''} onChange={handleChange} />
-          </div>
-
-          <div className="form-group full-width">
-            <label>NIS:</label>
+            <label style={{marginLeft: '15px'}}>NIS:</label>
             <input type="text" name="nis" value={formData.nis || ''} onChange={handleChange} />
           </div>
 
-          {/* CERTIDÕES - bloco dinâmico */}
-          <div style={{marginTop: '20px', fontWeight: 'bold', fontSize: '1rem', textTransform: 'uppercase', borderBottom: '2px solid var(--border-color)', paddingBottom: '5px', marginBottom: '12px'}}>
-            INFORMAÇÕES DA(S) CERTIDÃO(ÕES):
+          <div className="form-group full-width">
+            <label>MATRÍCULA DA CERTIDÃO:</label>
+            <input type="text" name="matriculaCertidao" value={formData.matriculaCertidao || ''} onChange={handleChange} />
           </div>
 
-          {certidoes.map((cert, index) => (
-            <div key={index} style={{border: '1px solid #ddd', borderRadius: '6px', padding: '14px', marginBottom: '14px', position: 'relative', backgroundColor: '#fafafa'}}>
-              
-              {/* Cabeçalho da certidão */}
-              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px'}}>
-                <span style={{fontWeight: 600, fontSize: '0.85rem', color: '#555', textTransform: 'uppercase', letterSpacing: '0.05em'}}>
-                  Certidão {certidoes.length > 1 ? `#${index + 1}` : ''}
-                </span>
-                {certidoes.length > 1 && (
-                  <button
-                    type="button"
-                    onClick={() => removeCertidao(index)}
-                    style={{background: 'none', border: 'none', color: '#c0392b', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, padding: '2px 6px'}}
-                  >
-                    ✕ Remover
-                  </button>
-                )}
-              </div>
-
-              {/* Tipo de Certidão */}
-              <div className="form-group">
-                <label>TIPO:</label>
-                <div className="radio-group">
-                  {['Nascimento', 'Casamento', 'Óbito'].map(tipo => (
-                    <label key={tipo} className="radio-label">
-                      <input
-                        type="radio"
-                        name={`tipoCertidao_${index}`}
-                        value={tipo}
-                        checked={cert.tipo === tipo}
-                        onChange={() => handleCertidaoChange(index, 'tipo', tipo)}
-                      /> {tipo}
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Cartório + Data do Evento */}
-              <div className="form-group full-width">
-                <label>CARTÓRIO:</label>
-                <input type="text" value={cert.cartorio} onChange={e => handleCertidaoChange(index, 'cartorio', e.target.value)} />
-                <label style={{marginLeft: '15px'}}>
-                  DATA DE {cert.tipo === 'Casamento' ? 'CASAMENTO' : cert.tipo === 'Óbito' ? 'ÓBITO' : 'NASCIMENTO'}:
-                </label>
-                <input type="date" value={cert.dataEvento} onChange={e => handleCertidaoChange(index, 'dataEvento', e.target.value)} />
-              </div>
-
-              {/* Matrícula + Data do Registro */}
-              <div className="form-group">
-                <label>MATRÍCULA:</label>
-                <input type="text" value={cert.matricula} onChange={e => handleCertidaoChange(index, 'matricula', e.target.value)} />
-                <label style={{marginLeft: '15px'}}>DATA DO REGISTRO:</label>
-                <input type="date" value={cert.dataRegistro} onChange={e => handleCertidaoChange(index, 'dataRegistro', e.target.value)} />
-              </div>
-
-              {/* Livro / Folha / Termo */}
-              <div className="form-group">
-                <label>LIVRO:</label>
-                <input type="text" value={cert.livro} onChange={e => handleCertidaoChange(index, 'livro', e.target.value)} style={{width: '70px', flexGrow: 0}} />
-                <label style={{marginLeft: '15px'}}>FOLHA:</label>
-                <input type="text" value={cert.folha} onChange={e => handleCertidaoChange(index, 'folha', e.target.value)} style={{width: '70px', flexGrow: 0}} />
-                <label style={{marginLeft: '15px'}}>TERMO:</label>
-                <input type="text" value={cert.termo} onChange={e => handleCertidaoChange(index, 'termo', e.target.value)} style={{width: '70px', flexGrow: 0}} />
-              </div>
-            </div>
-          ))}
-
-          {/* Botão de adicionar nova certidão */}
-          <div style={{marginBottom: '20px'}}>
-            <button
-              type="button"
-              onClick={addCertidao}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '6px',
-                background: 'none', border: '2px dashed var(--primary-color)',
-                color: 'var(--primary-color)', padding: '8px 18px',
-                borderRadius: '6px', cursor: 'pointer', fontWeight: 600,
-                fontSize: '0.9rem', transition: 'all 0.2s'
-              }}
-            >
-              + Adicionar outra certidão
-            </button>
+          <div className="form-group">
+            <label>LIVRO:</label>
+            <input type="text" name="livroCertidao" value={formData.livroCertidao || ''} onChange={handleChange} style={{width: '70px', flexGrow: 0}} />
+            <label style={{marginLeft: '15px'}}>FOLHA:</label>
+            <input type="text" name="folhaCertidao" value={formData.folhaCertidao || ''} onChange={handleChange} style={{width: '70px', flexGrow: 0}} />
+            <label style={{marginLeft: '15px'}}>TERMO:</label>
+            <input type="text" name="termoCertidao" value={formData.termoCertidao || ''} onChange={handleChange} style={{width: '70px', flexGrow: 0}} />
+            <label style={{marginLeft: '15px'}}>DATA REG.:</label>
+            <input type="date" name="dataRegistroCertidao" value={formData.dataRegistroCertidao || ''} onChange={handleChange} />
           </div>
 
 
-          <div className="section-title">2. SITUAÇÃO HABITACIONAL</div>
+          <div className="section-title">3. SITUAÇÃO HABITACIONAL</div>
 
           <div className="form-group full-width">
-            <label>QUANTO TEMPO RESIDE NO POVOADO:</label>
+            <label>HÁ QUANTO TEMPO RESIDE NO POVOADO?</label>
             <input type="text" name="tempoResidePovoado" value={formData.tempoResidePovoado || ''} onChange={handleChange} />
           </div>
 
@@ -437,14 +371,13 @@ export default function Home() {
             <label>CASA:</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="casa" value="Própria" onChange={(e) => handleRadioChange("casa", e.target.value)} checked={formData.casa === "Própria"} /> Própria</label>
-              <label className="radio-label"><input type="radio" name="casa" value="Ocupação/Invasão" onChange={(e) => handleRadioChange("casa", e.target.value)} checked={formData.casa === "Ocupação/Invasão"} /> Ocupação/Invasão</label>
               <label className="radio-label"><input type="radio" name="casa" value="Alugada" onChange={(e) => handleRadioChange("casa", e.target.value)} checked={formData.casa === "Alugada"} /> Alugada</label>
               <label className="radio-label"><input type="radio" name="casa" value="Cedida" onChange={(e) => handleRadioChange("casa", e.target.value)} checked={formData.casa === "Cedida"} /> Cedida</label>
             </div>
             {formData.casa === "Alugada" && (
               <>
                 <label style={{marginLeft: '15px'}}>Valor R$:</label>
-                <input type="number" name="valorAluguel" value={formData.valorAluguel || ''} onChange={handleChange} style={{width: '80px', flexGrow: 0}} />
+                <input type="text" name="valorAluguel" value={formData.valorAluguel || ''} onChange={handleChange} style={{width: '90px', flexGrow: 0}} />
               </>
             )}
             {formData.casa === "Cedida" && (
@@ -458,61 +391,58 @@ export default function Home() {
           <div className="form-group">
             <label>TIPO DE HABITAÇÃO:</label>
             <div className="radio-group">
-              <label className="radio-label"><input type="radio" name="tipoHabitacao" value="Madeira" onChange={(e) => handleRadioChange("tipoHabitacao", e.target.value)} checked={formData.tipoHabitacao === "Madeira"} /> Madeira</label>
               <label className="radio-label"><input type="radio" name="tipoHabitacao" value="Alvenaria" onChange={(e) => handleRadioChange("tipoHabitacao", e.target.value)} checked={formData.tipoHabitacao === "Alvenaria"} /> Alvenaria</label>
+              <label className="radio-label"><input type="radio" name="tipoHabitacao" value="Taipa" onChange={(e) => handleRadioChange("tipoHabitacao", e.target.value)} checked={formData.tipoHabitacao === "Taipa"} /> Taipa</label>
               <label className="radio-label"><input type="radio" name="tipoHabitacao" value="Misto" onChange={(e) => handleRadioChange("tipoHabitacao", e.target.value)} checked={formData.tipoHabitacao === "Misto"} /> Misto</label>
             </div>
             {formData.tipoHabitacao === "Misto" && (
-              <input type="text" name="tipoHabitacaoOutro" value={formData.tipoHabitacaoOutro || ''} onChange={handleChange} style={{marginLeft: '15px'}} placeholder="Especifique" />
+              <input type="text" name="tipoHabitacaoOutro" value={formData.tipoHabitacaoOutro || ''} onChange={handleChange} style={{marginLeft: '15px'}} placeholder="Outro (especifique)" />
             )}
           </div>
 
           <div className="form-group full-width">
-            <label>Quantos cômodos e descrição?</label>
+            <label>QUANTOS CÔMODOS?</label>
             <input type="text" name="quantosComodosEDescricao" value={formData.quantosComodosEDescricao || ''} onChange={handleChange} />
           </div>
 
           <div className="form-group">
             <label>ENERGIA ELÉTRICA:</label>
             <div className="radio-group">
-              <label className="radio-label"><input type="radio" name="energiaEletrica" value="Própria" onChange={(e) => handleRadioChange("energiaEletrica", e.target.value)} checked={formData.energiaEletrica === "Própria"} /> Própria</label>
+              <label className="radio-label"><input type="radio" name="energiaEletrica" value="Regular" onChange={(e) => handleRadioChange("energiaEletrica", e.target.value)} checked={formData.energiaEletrica === "Regular"} /> Regular</label>
+              <label className="radio-label"><input type="radio" name="energiaEletrica" value="Irregular" onChange={(e) => handleRadioChange("energiaEletrica", e.target.value)} checked={formData.energiaEletrica === "Irregular"} /> Irregular</label>
               <label className="radio-label"><input type="radio" name="energiaEletrica" value="Sem Energia" onChange={(e) => handleRadioChange("energiaEletrica", e.target.value)} checked={formData.energiaEletrica === "Sem Energia"} /> Sem Energia</label>
-              <label className="radio-label"><input type="radio" name="energiaEletrica" value="Outros" onChange={(e) => handleRadioChange("energiaEletrica", e.target.value)} checked={formData.energiaEletrica === "Outros"} /> Outros</label>
             </div>
-            {formData.energiaEletrica === "Outros" && (
-              <input type="text" name="energiaEletricaOutro" value={formData.energiaEletricaOutro || ''} onChange={handleChange} style={{marginLeft: '15px'}} placeholder="Especifique" />
-            )}
           </div>
 
           <div className="form-group">
-            <label>ABASTECIMENTO DE ÁGUA:</label>
+            <label>ÁGUA:</label>
             <div className="radio-group">
-              <label className="radio-label"><input type="radio" name="abastecimentoAgua" value="Rede de distribuição" onChange={(e) => handleRadioChange("abastecimentoAgua", e.target.value)} checked={formData.abastecimentoAgua === "Rede de distribuição"} /> Rede de distribuição</label>
-              <label className="radio-label"><input type="radio" name="abastecimentoAgua" value="Poço ou Nascente" onChange={(e) => handleRadioChange("abastecimentoAgua", e.target.value)} checked={formData.abastecimentoAgua === "Poço ou Nascente"} /> Poço ou Nascente</label>
-              <label className="radio-label"><input type="radio" name="abastecimentoAgua" value="Cisterna" onChange={(e) => handleRadioChange("abastecimentoAgua", e.target.value)} checked={formData.abastecimentoAgua === "Cisterna"} /> Cisterna</label>
-              <label className="radio-label"><input type="radio" name="abastecimentoAgua" value="Outros" onChange={(e) => handleRadioChange("abastecimentoAgua", e.target.value)} checked={formData.abastecimentoAgua === "Outros"} /> Outros</label>
+              <label className="radio-label"><input type="radio" name="abastecimentoAgua" value="Encanada" onChange={(e) => handleRadioChange("abastecimentoAgua", e.target.value)} checked={formData.abastecimentoAgua === "Encanada"} /> Encanada</label>
+              <label className="radio-label"><input type="radio" name="abastecimentoAgua" value="Poço" onChange={(e) => handleRadioChange("abastecimentoAgua", e.target.value)} checked={formData.abastecimentoAgua === "Poço"} /> Poço</label>
+              <label className="radio-label"><input type="radio" name="abastecimentoAgua" value="Sem Água" onChange={(e) => handleRadioChange("abastecimentoAgua", e.target.value)} checked={formData.abastecimentoAgua === "Sem Água"} /> Sem Água</label>
             </div>
-            {formData.abastecimentoAgua === "Outros" && (
-              <input type="text" name="abastecimentoAguaOutro" value={formData.abastecimentoAguaOutro || ''} onChange={handleChange} style={{marginLeft: '15px'}} placeholder="Especifique" />
-            )}
           </div>
 
           <div className="form-group">
-            <label>SANEAMENTO BÁSICO:</label>
+            <label>SANEAMENTO:</label>
             <div className="radio-group">
-              <label className="radio-label"><input type="radio" name="saneamentoBasico" value="Rede coletora" onChange={(e) => handleRadioChange("saneamentoBasico", e.target.value)} checked={formData.saneamentoBasico === "Rede coletora"} /> Rede coletora</label>
-              <label className="radio-label"><input type="radio" name="saneamentoBasico" value="Fossa séptica" onChange={(e) => handleRadioChange("saneamentoBasico", e.target.value)} checked={formData.saneamentoBasico === "Fossa séptica"} /> Fossa séptica</label>
-              <label className="radio-label"><input type="radio" name="saneamentoBasico" value="Fossa rudimentar" onChange={(e) => handleRadioChange("saneamentoBasico", e.target.value)} checked={formData.saneamentoBasico === "Fossa rudimentar"} /> Fossa rudimentar</label>
-              <label className="radio-label"><input type="radio" name="saneamentoBasico" value="Direto para rio/mar ou rua" onChange={(e) => handleRadioChange("saneamentoBasico", e.target.value)} checked={formData.saneamentoBasico === "Direto para rio/mar ou rua"} /> Direto para rio/mar ou rua</label>
-              <label className="radio-label"><input type="radio" name="saneamentoBasico" value="Outros" onChange={(e) => handleRadioChange("saneamentoBasico", e.target.value)} checked={formData.saneamentoBasico === "Outros"} /> Outros</label>
+              <label className="radio-label"><input type="radio" name="saneamentoBasico" value="Rede Pública" onChange={(e) => handleRadioChange("saneamentoBasico", e.target.value)} checked={formData.saneamentoBasico === "Rede Pública"} /> Rede Pública</label>
+              <label className="radio-label"><input type="radio" name="saneamentoBasico" value="Fossa" onChange={(e) => handleRadioChange("saneamentoBasico", e.target.value)} checked={formData.saneamentoBasico === "Fossa"} /> Fossa</label>
+              <label className="radio-label"><input type="radio" name="saneamentoBasico" value="Nenhum" onChange={(e) => handleRadioChange("saneamentoBasico", e.target.value)} checked={formData.saneamentoBasico === "Nenhum"} /> Nenhum</label>
             </div>
-            {formData.saneamentoBasico === "Outros" && (
-              <input type="text" name="saneamentoBasicoOutro" value={formData.saneamentoBasicoOutro || ''} onChange={handleChange} style={{marginLeft: '15px'}} placeholder="Especifique" />
-            )}
           </div>
 
           <div className="form-group">
-            <label>POSSUI CONEXÃO COM INTERNET?</label>
+            <label>TRANSPORTE:</label>
+            <div className="radio-group">
+              <label className="radio-label"><input type="radio" name="transporte" value="Público" onChange={(e) => handleRadioChange("transporte", e.target.value)} checked={formData.transporte === "Público"} /> Público</label>
+              <label className="radio-label"><input type="radio" name="transporte" value="Particular" onChange={(e) => handleRadioChange("transporte", e.target.value)} checked={formData.transporte === "Particular"} /> Particular</label>
+              <label className="radio-label"><input type="radio" name="transporte" value="Nenhum" onChange={(e) => handleRadioChange("transporte", e.target.value)} checked={formData.transporte === "Nenhum"} /> Nenhum</label>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>POSSUI INTERNET?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="possuiConexaoInternet" value="true" onChange={() => handleRadioChange("possuiConexaoInternet", true)} checked={formData.possuiConexaoInternet === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="possuiConexaoInternet" value="false" onChange={() => handleRadioChange("possuiConexaoInternet", false)} checked={formData.possuiConexaoInternet === false} /> Não</label>
@@ -521,35 +451,24 @@ export default function Home() {
           
           {formData.possuiConexaoInternet === true && (
             <div className="form-group">
+              <label>TIPO:</label>
               <div className="radio-group">
-                <label className="radio-label"><input type="radio" name="propriedadeInternet" value="Cedida" onChange={(e) => handleRadioChange("propriedadeInternet", e.target.value)} checked={formData.propriedadeInternet === "Cedida"} /> Cedida</label>
-                <label className="radio-label"><input type="radio" name="propriedadeInternet" value="Própria" onChange={(e) => handleRadioChange("propriedadeInternet", e.target.value)} checked={formData.propriedadeInternet === "Própria"} /> Própria</label>
+                <label className="radio-label"><input type="radio" name="tipoConexaoInternet" value="Dados" onChange={(e) => handleRadioChange("tipoConexaoInternet", e.target.value)} checked={formData.tipoConexaoInternet === "Dados"} /> Dados</label>
+                <label className="radio-label"><input type="radio" name="tipoConexaoInternet" value="Fixa" onChange={(e) => handleRadioChange("tipoConexaoInternet", e.target.value)} checked={formData.tipoConexaoInternet === "Fixa"} /> Fixa</label>
               </div>
-              <label style={{marginLeft: '15px'}}>Tipo:</label>
+              <label style={{marginLeft: '15px'}}>É:</label>
               <div className="radio-group">
-                <label className="radio-label"><input type="radio" name="tipoConexaoInternet" value="dados móveis" onChange={(e) => handleRadioChange("tipoConexaoInternet", e.target.value)} checked={formData.tipoConexaoInternet === "dados móveis"} /> dados móveis</label>
-                <label className="radio-label"><input type="radio" name="tipoConexaoInternet" value="fixa" onChange={(e) => handleRadioChange("tipoConexaoInternet", e.target.value)} checked={formData.tipoConexaoInternet === "fixa"} /> fixa</label>
+                <label className="radio-label"><input type="radio" name="propriedadeInternet" value="Própria" onChange={(e) => handleRadioChange("propriedadeInternet", e.target.value)} checked={formData.propriedadeInternet === "Própria"} /> Própria</label>
+                <label className="radio-label"><input type="radio" name="propriedadeInternet" value="Cedida" onChange={(e) => handleRadioChange("propriedadeInternet", e.target.value)} checked={formData.propriedadeInternet === "Cedida"} /> Cedida</label>
               </div>
             </div>
           )}
 
-          <div className="form-group">
-            <label>TRANSPORTE:</label>
-            <div className="radio-group">
-              <label className="radio-label"><input type="radio" name="transporte" value="Próprio" onChange={(e) => handleRadioChange("transporte", e.target.value)} checked={formData.transporte === "Próprio"} /> Próprio</label>
-              <label className="radio-label"><input type="radio" name="transporte" value="Sistema de Transporte Público" onChange={(e) => handleRadioChange("transporte", e.target.value)} checked={formData.transporte === "Sistema de Transporte Público"} /> Sistema de Transporte Público</label>
-              <label className="radio-label"><input type="radio" name="transporte" value="Outros" onChange={(e) => handleRadioChange("transporte", e.target.value)} checked={formData.transporte === "Outros"} /> Outros</label>
-            </div>
-            {formData.transporte === "Outros" && (
-              <input type="text" name="transporteOutros" value={formData.transporteOutros || ''} onChange={handleChange} style={{marginLeft: '15px'}} placeholder="Especifique" />
-            )}
-          </div>
 
-
-          <div className="section-title">3. SITUAÇÃO DE TRABALHO E RENDA</div>
+          <div className="section-title">4. SITUAÇÃO DE TRABALHO E RENDA</div>
 
           <div className="form-group">
-            <label>TRABALHA ATUALMENTE:</label>
+            <label>TRABALHA ATUALMENTE?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="trabalhaAtualmente" value="true" onChange={() => handleRadioChange("trabalhaAtualmente", true)} checked={formData.trabalhaAtualmente === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="trabalhaAtualmente" value="false" onChange={() => handleRadioChange("trabalhaAtualmente", false)} checked={formData.trabalhaAtualmente === false} /> Não</label>
@@ -569,32 +488,33 @@ export default function Home() {
               </div>
 
               <div className="form-group">
-                <label>MODALIDADE DE TRABALHO:</label>
+                <label>MODALIDADE:</label>
                 <div className="radio-group">
-                  <label className="radio-label"><input type="radio" name="modalidadeTrabalho" value="CLT" onChange={(e) => handleRadioChange("modalidadeTrabalho", e.target.value)} checked={formData.modalidadeTrabalho === "CLT"} /> CLT</label>
-                  <label className="radio-label"><input type="radio" name="modalidadeTrabalho" value="AUTÔNOMO" onChange={(e) => handleRadioChange("modalidadeTrabalho", e.target.value)} checked={formData.modalidadeTrabalho === "AUTÔNOMO"} /> AUTÔNOMO</label>
+                  <label className="radio-label"><input type="radio" name="modalidadeTrabalho" value="Presencial" onChange={(e) => handleRadioChange("modalidadeTrabalho", e.target.value)} checked={formData.modalidadeTrabalho === "Presencial"} /> Presencial</label>
+                  <label className="radio-label"><input type="radio" name="modalidadeTrabalho" value="Remoto" onChange={(e) => handleRadioChange("modalidadeTrabalho", e.target.value)} checked={formData.modalidadeTrabalho === "Remoto"} /> Remoto</label>
+                  <label className="radio-label"><input type="radio" name="modalidadeTrabalho" value="Autônomo" onChange={(e) => handleRadioChange("modalidadeTrabalho", e.target.value)} checked={formData.modalidadeTrabalho === "Autônomo"} /> Autônomo</label>
                 </div>
               </div>
 
-              {formData.modalidadeTrabalho === "AUTÔNOMO" && (
+              {formData.modalidadeTrabalho === "Autônomo" && (
                 <div className="form-group">
-                  <label>Se autônomo:</label>
+                  <label>Se Autônomo:</label>
                   <div className="radio-group">
-                    <label className="radio-label"><input type="radio" name="seAutonomoFormalInformal" value="FORMAL" onChange={(e) => handleRadioChange("seAutonomoFormalInformal", e.target.value)} checked={formData.seAutonomoFormalInformal === "FORMAL"} /> FORMAL</label>
-                    <label className="radio-label"><input type="radio" name="seAutonomoFormalInformal" value="INFORMAL" onChange={(e) => handleRadioChange("seAutonomoFormalInformal", e.target.value)} checked={formData.seAutonomoFormalInformal === "INFORMAL"} /> INFORMAL</label>
+                    <label className="radio-label"><input type="radio" name="seAutonomoFormalInformal" value="Formal" onChange={(e) => handleRadioChange("seAutonomoFormalInformal", e.target.value)} checked={formData.seAutonomoFormalInformal === "Formal"} /> Formal</label>
+                    <label className="radio-label"><input type="radio" name="seAutonomoFormalInformal" value="Informal" onChange={(e) => handleRadioChange("seAutonomoFormalInformal", e.target.value)} checked={formData.seAutonomoFormalInformal === "Informal"} /> Informal</label>
                   </div>
                 </div>
               )}
 
               <div className="form-group">
-                <label>REMUNERAÇÃO:</label>
+                <label>REMUNERAÇÃO MENSAL (R$):</label>
                 <input type="text" name="remuneracao" value={formData.remuneracao || ''} onChange={handleChange} />
               </div>
             </>
           )}
 
           <div className="form-group">
-            <label>EXERCE TRABALHO DOMÉSTICO EM SEU DOMICÍLIO:</label>
+            <label>EXERCE TRABALHO DOMÉSTICO NO PRÓPRIO DOMICÍLIO?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="exerceTrabalhoDomesticoDomicilio" value="true" onChange={() => handleRadioChange("exerceTrabalhoDomesticoDomicilio", true)} checked={formData.exerceTrabalhoDomesticoDomicilio === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="exerceTrabalhoDomesticoDomicilio" value="false" onChange={() => handleRadioChange("exerceTrabalhoDomesticoDomicilio", false)} checked={formData.exerceTrabalhoDomesticoDomicilio === false} /> Não</label>
@@ -602,7 +522,7 @@ export default function Home() {
           </div>
 
           <div className="form-group">
-            <label>RECEBE BENEFÍCIO:</label>
+            <label>RECEBE BENEFÍCIO DO GOVERNO?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="recebeBeneficio" value="true" onChange={() => handleRadioChange("recebeBeneficio", true)} checked={formData.recebeBeneficio === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="recebeBeneficio" value="false" onChange={() => handleRadioChange("recebeBeneficio", false)} checked={formData.recebeBeneficio === false} /> Não</label>
@@ -611,7 +531,7 @@ export default function Home() {
 
           {formData.recebeBeneficio === true && (
             <div className="form-group full-width">
-              <label>QUAIS:</label>
+              <label>QUAIS?</label>
               <div className="radio-group" style={{flexWrap: 'wrap'}}>
                 <label className="radio-label"><input type="checkbox" name="benBolsaFamilia" onChange={handleChange} checked={!!formData.benBolsaFamilia} /> Bolsa Família</label>
                 <label className="radio-label"><input type="checkbox" name="benBPC" onChange={handleChange} checked={!!formData.benBPC} /> BPC</label>
@@ -623,55 +543,25 @@ export default function Home() {
             </div>
           )}
 
-          <div className="section-title">4. EDUCAÇÃO</div>
+
+          <div className="section-title">5. EDUCAÇÃO & COMPOSIÇÃO FAMILIAR</div>
 
           <div className="form-group">
             <label>ESCOLARIDADE:</label>
-            <div className="radio-group">
-              <label className="radio-label"><input type="radio" name="escolaridadeStatus" value="Não possui" onChange={(e) => handleRadioChange("escolaridadeStatus", e.target.value)} checked={formData.escolaridadeStatus === "Não possui"} /> Não possui</label>
-              <label className="radio-label"><input type="radio" name="escolaridadeStatus" value="Cursando" onChange={(e) => handleRadioChange("escolaridadeStatus", e.target.value)} checked={formData.escolaridadeStatus === "Cursando"} /> Cursando</label>
-            </div>
-            <label style={{marginLeft: '15px'}}>ano:</label>
-            <input type="text" name="escolaridadeAno" value={formData.escolaridadeAno || ''} onChange={handleChange} style={{width: '60px', flexGrow: 0}} />
-          </div>
-
-          <div className="form-group">
-            <label>Possui -</label>
             <div className="radio-group" style={{flexWrap: 'wrap'}}>
-              <label className="radio-label"><input type="radio" name="escolaridadePossui" value="FUNDAMENTAL I" onChange={(e) => handleRadioChange("escolaridadePossui", e.target.value)} checked={formData.escolaridadePossui === "FUNDAMENTAL I"} /> FUNDAMENTAL I</label>
-              <label className="radio-label"><input type="radio" name="escolaridadePossui" value="FUNDAMENTAL II" onChange={(e) => handleRadioChange("escolaridadePossui", e.target.value)} checked={formData.escolaridadePossui === "FUNDAMENTAL II"} /> FUNDAMENTAL II</label>
-              <label className="radio-label"><input type="radio" name="escolaridadePossui" value="MÉDIO" onChange={(e) => handleRadioChange("escolaridadePossui", e.target.value)} checked={formData.escolaridadePossui === "MÉDIO"} /> MÉDIO</label>
-              <label className="radio-label"><input type="radio" name="escolaridadePossui" value="TECNÓLOGO" onChange={(e) => handleRadioChange("escolaridadePossui", e.target.value)} checked={formData.escolaridadePossui === "TECNÓLOGO"} /> TECNÓLOGO</label>
-              <label className="radio-label"><input type="radio" name="escolaridadePossui" value="TÉCNICO" onChange={(e) => handleRadioChange("escolaridadePossui", e.target.value)} checked={formData.escolaridadePossui === "TÉCNICO"} /> TÉCNICO</label>
-              <label className="radio-label"><input type="radio" name="escolaridadePossui" value="PROFISSIONALIZANTE" onChange={(e) => handleRadioChange("escolaridadePossui", e.target.value)} checked={formData.escolaridadePossui === "PROFISSIONALIZANTE"} /> PROFISSIONALIZANTE</label>
-              <label className="radio-label"><input type="radio" name="escolaridadePossui" value="SUPERIOR" onChange={(e) => handleRadioChange("escolaridadePossui", e.target.value)} checked={formData.escolaridadePossui === "SUPERIOR"} /> SUPERIOR</label>
-              <label className="radio-label"><input type="radio" name="escolaridadePossui" value="PÓS-GRADUAÇÃO" onChange={(e) => handleRadioChange("escolaridadePossui", e.target.value)} checked={formData.escolaridadePossui === "PÓS-GRADUAÇÃO"} /> PÓS-GRADUAÇÃO</label>
+              <label className="radio-label"><input type="radio" name="escolaridadeStatus" value="Completo" onChange={(e) => handleRadioChange("escolaridadeStatus", e.target.value)} checked={formData.escolaridadeStatus === "Completo"} /> Completo</label>
+              <label className="radio-label"><input type="radio" name="escolaridadeStatus" value="Incompleto" onChange={(e) => handleRadioChange("escolaridadeStatus", e.target.value)} checked={formData.escolaridadeStatus === "Incompleto"} /> Incompleto</label>
+              <label className="radio-label"><input type="radio" name="escolaridadeStatus" value="Cursando" onChange={(e) => handleRadioChange("escolaridadeStatus", e.target.value)} checked={formData.escolaridadeStatus === "Cursando"} /> Cursando</label>
+              <label className="radio-label"><input type="radio" name="escolaridadeStatus" value="Nunca Estudou" onChange={(e) => handleRadioChange("escolaridadeStatus", e.target.value)} checked={formData.escolaridadeStatus === "Nunca Estudou"} /> Nunca Estudou</label>
             </div>
+            <label style={{marginLeft: '15px'}}>ANO/GRAU:</label>
+            <input type="text" name="escolaridadeAno" value={formData.escolaridadeAno || ''} onChange={handleChange} style={{width: '120px', flexGrow: 0}} />
           </div>
 
           <div className="form-group full-width" style={{display: 'block'}}>
-            <label style={{display: 'block', marginBottom: '10px'}}>Quais escolas servem os Ilha/Povoados:</label>
+            <label style={{display: 'block', marginBottom: '10px'}}>QUAIS ESCOLAS SERVEM À ILHA/POVOADO?</label>
             <input type="text" name="quaisEscolasServemIlhaPovoados" value={formData.quaisEscolasServemIlhaPovoados || ''} onChange={handleChange} style={{width: '100%'}} />
           </div>
-
-
-          <div className="section-title">5. DESPESAS</div>
-
-          <div className="form-group full-width">
-            <div className="radio-group" style={{marginLeft: 0}}>
-              <label className="radio-label"><input type="checkbox" name="despEnergia" onChange={handleChange} checked={!!formData.despEnergia} /> Energia Elétrica</label>
-              <label className="radio-label"><input type="checkbox" name="despAgua" onChange={handleChange} checked={!!formData.despAgua} /> Água</label>
-            </div>
-            <label style={{marginLeft: '15px'}}>Alimentação:</label>
-            <input type="text" name="despesasAlimentacao" value={formData.despesasAlimentacao || ''} onChange={handleChange} />
-          </div>
-          <div className="form-group full-width">
-            <label>Outros:</label>
-            <input type="text" name="despesasOutros" value={formData.despesasOutros || ''} onChange={handleChange} />
-          </div>
-
-
-          <div className="section-title">6. COMPOSIÇÃO FAMILIAR</div>
 
           <div className="form-group">
             <label>POSSUI FILHOS?</label>
@@ -681,12 +571,37 @@ export default function Home() {
             </div>
             {formData.possuiFilhos === true && (
               <>
-                <label style={{marginLeft: '15px'}}>Quantos?</label>
-                <input type="number" name="quantosFilhos" value={formData.quantosFilhos || ''} onChange={handleChange} style={{width: '60px', flexGrow: 0}} />
-                <label style={{marginLeft: '15px'}}>Idade(s)?</label>
-                <input type="text" name="idadeFilhos" value={formData.idadeFilhos || ''} onChange={handleChange} placeholder="Ex: 5, 8" />
+                <label style={{marginLeft: '15px'}}>QUANTOS?</label>
+                <input type="text" name="quantosFilhos" value={formData.quantosFilhos || ''} onChange={handleChange} style={{width: '60px', flexGrow: 0}} />
+                <label style={{marginLeft: '15px'}}>IDADE(S):</label>
+                <input type="text" name="idadeFilhos" value={formData.idadeFilhos || ''} onChange={handleChange} placeholder="Ex: 10, 13 e 25 anos" />
               </>
             )}
+          </div>
+
+
+          <div className="section-title">6. DESPESAS MENSAIS (ASSINALE SE HOUVER E INFORME O VALOR APROXIMADO)</div>
+
+          <div className="form-group" style={{display: 'flex', flexWrap: 'wrap', gap: '15px'}}>
+            <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+              <label className="radio-label"><input type="checkbox" name="despEnergia" onChange={handleChange} checked={!!formData.despEnergia} /> Energia R$</label>
+              <input type="text" name="despesasEnergiaEletrica" value={formData.despesasEnergiaEletrica || ''} onChange={handleChange} style={{width: '90px'}} placeholder="0,00" />
+            </div>
+
+            <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+              <label className="radio-label"><input type="checkbox" name="despAgua" onChange={handleChange} checked={!!formData.despAgua} /> Água R$</label>
+              <input type="text" name="despesasAgua" value={formData.despesasAgua || ''} onChange={handleChange} style={{width: '90px'}} placeholder="0,00" />
+            </div>
+
+            <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+              <label className="radio-label"><input type="checkbox" name="despAlim" onChange={handleChange} checked={!!formData.despAlim} /> Alim. R$</label>
+              <input type="text" name="despesasAlimentacao" value={formData.despesasAlimentacao || ''} onChange={handleChange} style={{width: '90px'}} placeholder="0,00" />
+            </div>
+
+            <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+              <label className="radio-label"><input type="checkbox" name="despOutros" onChange={handleChange} checked={!!formData.despOutros} /> Outros R$</label>
+              <input type="text" name="despesasOutros" value={formData.despesasOutros || ''} onChange={handleChange} style={{width: '90px'}} placeholder="0,00" />
+            </div>
           </div>
 
 
@@ -698,84 +613,95 @@ export default function Home() {
               <label className="radio-label"><input type="radio" name="possuiProblemaSaude" value="true" onChange={() => handleRadioChange("possuiProblemaSaude", true)} checked={formData.possuiProblemaSaude === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="possuiProblemaSaude" value="false" onChange={() => handleRadioChange("possuiProblemaSaude", false)} checked={formData.possuiProblemaSaude === false} /> Não</label>
             </div>
+            {formData.possuiProblemaSaude === true && (
+              <>
+                <label style={{marginLeft: '15px'}}>QUAL?</label>
+                <input type="text" name="qualProblemaSaude" value={formData.qualProblemaSaude || ''} onChange={handleChange} />
+              </>
+            )}
           </div>
 
-          {formData.possuiProblemaSaude === true && (
-            <div className="form-group full-width">
-              <label>QUAL?</label>
-              <input type="text" name="qualProblemaSaude" value={formData.qualProblemaSaude || ''} onChange={handleChange} />
-            </div>
-          )}
-
           <div className="form-group">
-            <label>FAZ ALGUM TRATAMENTO?</label>
+            <label>FAZ TRATAMENTO?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="fazTratamento" value="true" onChange={() => handleRadioChange("fazTratamento", true)} checked={formData.fazTratamento === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="fazTratamento" value="false" onChange={() => handleRadioChange("fazTratamento", false)} checked={formData.fazTratamento === false} /> Não</label>
             </div>
-          </div>
 
-          <div className="form-group">
-            <label>FAZ USO DE MEDICAÇÃO?</label>
+            <label style={{marginLeft: '20px'}}>USO DE MEDICAÇÃO?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="fazUsoMedicacao" value="true" onChange={() => handleRadioChange("fazUsoMedicacao", true)} checked={formData.fazUsoMedicacao === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="fazUsoMedicacao" value="false" onChange={() => handleRadioChange("fazUsoMedicacao", false)} checked={formData.fazUsoMedicacao === false} /> Não</label>
             </div>
+            {formData.fazUsoMedicacao === true && (
+              <>
+                <label style={{marginLeft: '15px'}}>QUAIS?</label>
+                <input type="text" name="quaisMedicacoes" value={formData.quaisMedicacoes || ''} onChange={handleChange} />
+              </>
+            )}
           </div>
 
-          {formData.fazUsoMedicacao === true && (
-            <div className="form-group full-width">
-              <label>QUAIS MEDICAÇÕES?</label>
-              <input type="text" name="quaisMedicacoes" value={formData.quaisMedicacoes || ''} onChange={handleChange} />
-            </div>
-          )}
-
           <div className="form-group">
-            <label>MEDICAÇÃO USO CONTÍNUO?</label>
+            <label>MEDICAÇÃO DE USO CONTÍNUO?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="medicacaoUsoContinuo" value="true" onChange={() => handleRadioChange("medicacaoUsoContinuo", true)} checked={formData.medicacaoUsoContinuo === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="medicacaoUsoContinuo" value="false" onChange={() => handleRadioChange("medicacaoUsoContinuo", false)} checked={formData.medicacaoUsoContinuo === false} /> Não</label>
             </div>
+            {formData.medicacaoUsoContinuo === true && (
+              <>
+                <label style={{marginLeft: '15px'}}>QUAIS?</label>
+                <input type="text" name="quaisMedicacoesUsoContinuo" value={formData.quaisMedicacoesUsoContinuo || ''} onChange={handleChange} />
+              </>
+            )}
           </div>
 
-          {formData.medicacaoUsoContinuo === true && (
-            <div className="form-group full-width">
-              <label>QUAIS MEDICAÇÕES DE USO CONTÍNUO?</label>
-              <input type="text" name="quaisMedicacoesUsoContinuo" value={formData.quaisMedicacoesUsoContinuo || ''} onChange={handleChange} />
-            </div>
-          )}
-
-          {/* Posto de Saúde */}
           <div className="form-group">
             <label>POSSUI POSTO DE SAÚDE?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="possuiPostoSaude" value="true" onChange={() => handleRadioChange("possuiPostoSaude", true)} checked={formData.possuiPostoSaude === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="possuiPostoSaude" value="false" onChange={() => handleRadioChange("possuiPostoSaude", false)} checked={formData.possuiPostoSaude === false} /> Não</label>
             </div>
+            {formData.possuiPostoSaude === true && (
+              <>
+                <label style={{marginLeft: '15px'}}>QUAL POSTO FREQUENTA?</label>
+                <input type="text" name="qualPostoSaudeFrequenta" value={formData.qualPostoSaudeFrequenta || ''} onChange={handleChange} />
+              </>
+            )}
           </div>
 
-          {formData.possuiPostoSaude === true && (
-            <div className="form-group full-width">
-              <label>QUAL O NOME DO POSTO DE SAÚDE?</label>
-              <input type="text" name="qualPostoSaudeFrequenta" value={formData.qualPostoSaudeFrequenta || ''} onChange={handleChange} />
-            </div>
-          )}
-
-          {/* Agente de Saúde */}
           <div className="form-group">
             <label>POSSUI AGENTE DE SAÚDE?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="possuiAgenteSaude" value="true" onChange={() => handleRadioChange("possuiAgenteSaude", true)} checked={formData.possuiAgenteSaude === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="possuiAgenteSaude" value="false" onChange={() => handleRadioChange("possuiAgenteSaude", false)} checked={formData.possuiAgenteSaude === false} /> Não</label>
             </div>
+            {formData.possuiAgenteSaude === true && (
+              <>
+                <label style={{marginLeft: '15px'}}>NOME DO AGENTE:</label>
+                <input type="text" name="nomeAgenteSaude" value={formData.nomeAgenteSaude || ''} onChange={handleChange} />
+              </>
+            )}
           </div>
 
-          {formData.possuiAgenteSaude === true && (
-            <div className="form-group full-width">
-              <label>NOME DO AGENTE DE SAÚDE:</label>
-              <input type="text" name="nomeAgenteSaude" value={formData.nomeAgenteSaude || ''} onChange={handleChange} />
+          <div className="form-group">
+            <label>TEM CARTÃO SUS?</label>
+            <div className="radio-group">
+              <label className="radio-label"><input type="radio" name="temCartaoSus" value="true" onChange={() => handleRadioChange("temCartaoSus", true)} checked={formData.temCartaoSus === true} /> Sim</label>
+              <label className="radio-label"><input type="radio" name="temCartaoSus" value="false" onChange={() => handleRadioChange("temCartaoSus", false)} checked={formData.temCartaoSus === false} /> Não</label>
             </div>
-          )}
+
+            <label style={{marginLeft: '20px'}}>TEM LAUDO MÉDICO?</label>
+            <div className="radio-group">
+              <label className="radio-label"><input type="radio" name="temLaudoMedico" value="true" onChange={() => handleRadioChange("temLaudoMedico", true)} checked={formData.temLaudoMedico === true} /> Sim</label>
+              <label className="radio-label"><input type="radio" name="temLaudoMedico" value="false" onChange={() => handleRadioChange("temLaudoMedico", false)} checked={formData.temLaudoMedico === false} /> Não</label>
+            </div>
+
+            <label style={{marginLeft: '20px'}}>PRECISA DE TRANSPORTE?</label>
+            <div className="radio-group">
+              <label className="radio-label"><input type="radio" name="precisaDeTransporte" value="true" onChange={() => handleRadioChange("precisaDeTransporte", true)} checked={formData.precisaDeTransporte === true} /> Sim</label>
+              <label className="radio-label"><input type="radio" name="precisaDeTransporte" value="false" onChange={() => handleRadioChange("precisaDeTransporte", false)} checked={formData.precisaDeTransporte === false} /> Não</label>
+            </div>
+          </div>
 
 
           <div className="section-title">8. QUAL A SUA DEMANDA PARA A DEFENSORIA</div>
@@ -790,8 +716,13 @@ export default function Home() {
           </div>
 
           <div className="form-group full-width">
-            <label>QUAL ORGÃO DEVE SER ENCAMINHADO?</label>
+            <label>QUAL ÓRGÃO DEVE SER ENCAMINHADO?</label>
             <input type="text" name="orgaoEncaminhado" value={formData.orgaoEncaminhado || ''} onChange={handleChange} />
+          </div>
+
+          <div className="form-group full-width" style={{marginTop: '20px'}}>
+            <label>OBSERVAÇÕES ADICIONAIS:</label>
+            <textarea name="observacoes" value={formData.observacoes || ''} onChange={handleChange} placeholder="Anotações gerais da visita/atendimento"></textarea>
           </div>
 
           <button type="submit" className="submit-btn">Finalizar e Salvar Dados</button>

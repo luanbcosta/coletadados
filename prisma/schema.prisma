@@ -107,6 +107,7 @@ model Assistido {
   demandaDefensoria String?
   demandasPosteriores String?
   orgaoEncaminhado String?
+  observacoes String?
 
   @@map("assistidos")
 }

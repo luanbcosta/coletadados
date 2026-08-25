@@ -29,14 +29,15 @@ export async function POST(request: Request) {
     const docs = [];
     if (data.docRG) docs.push("RG");
     if (data.docCPF) docs.push("CPF");
-    if (data.docCNH) docs.push("CNH");
-    if (data.docCartaoCidadao) docs.push("Cartão Cidadão");
+    if (data.docNIS) docs.push("NIS");
+    if (data.docTitulo) docs.push("Título de Eleitor");
     if (data.docCTPS) docs.push("CTPS");
     if (data.docSUS) docs.push("SUS");
+    if (data.docCartaoCidadao) docs.push("Cartão Cidadão");
     if (data.docCarteiraIdoso) docs.push("Carteira do Idoso");
-    if (data.docTitulo) docs.push("Título de Eleitor");
     if (data.docCertNasc) docs.push("Certidão de Nascimento");
     if (data.docCertCasam) docs.push("Certidão de Casamento");
+    if (data.docCertObito) docs.push("Certidão de Óbito");
     if (docs.length > 0) data.documentosQuePossui = docs.join(", ");
     
     // Tratamento de Benefícios
@@ -47,8 +48,10 @@ export async function POST(request: Request) {
     if (bens.length > 0) data.quaisBeneficios = bens.join(", ") + (data.quaisBeneficios ? " - " + data.quaisBeneficios : "");
     
     // Tratamento de Despesas
-    if (data.despEnergia) data.despesasEnergiaEletrica = "Sim";
-    if (data.despAgua) data.despesasAgua = "Sim";
+    if (data.despEnergia && !data.despesasEnergiaEletrica) data.despesasEnergiaEletrica = "Sim";
+    if (data.despAgua && !data.despesasAgua) data.despesasAgua = "Sim";
+    if (data.despAlim && !data.despesasAlimentacao) data.despesasAlimentacao = "Sim";
+    if (data.despOutros && !data.despesasOutros) data.despesasOutros = "Sim";
 
     // Ajustar campos compostos (Outros)
     if (data.genero === "Outros" && data.generoOutros) data.genero = data.generoOutros;
@@ -59,7 +62,7 @@ export async function POST(request: Request) {
     if (data.saneamentoBasico === "Outros" && data.saneamentoBasicoOutro) data.saneamentoBasico = data.saneamentoBasicoOutro;
     if (data.transporte === "Outros" && data.transporteOutros) data.transporte = data.transporteOutros;
     if (data.propriedadeInternet) data.tipoConexaoInternet = (data.tipoConexaoInternet || "") + " (" + data.propriedadeInternet + ")";
-    if (data.escolaridadeStatus) data.escolaridade = data.escolaridadeStatus + (data.escolaridadeAno ? " - Ano " + data.escolaridadeAno : "");
+    if (data.escolaridadeStatus) data.escolaridade = data.escolaridadeStatus + (data.escolaridadeAno ? " - " + data.escolaridadeAno : "");
 
     // Filtrar estritamente apenas os campos que existem no schema do Prisma
     const validKeys = [
@@ -81,7 +84,7 @@ export async function POST(request: Request) {
       "fazUsoMedicacao", "quaisMedicacoes", "medicacaoUsoContinuo",
       "quaisMedicacoesUsoContinuo", "qualPostoSaudeFrequenta",
       "possuiPostoSaude", "possuiAgenteSaude", "nomeAgenteSaude",
-      "demandaDefensoria", "demandasPosteriores", "orgaoEncaminhado"
+      "demandaDefensoria", "demandasPosteriores", "orgaoEncaminhado", "observacoes"
     ];
 
     const cleanData: Record<string, any> = {};
