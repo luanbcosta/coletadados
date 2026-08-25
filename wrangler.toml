@@ -4,5 +4,5 @@ compatibility_flags = ["nodejs_compat"]
 
 [[d1_databases]]
 binding = "DB"
-database_name = "assistidos-db"
-database_id = "50e8a99e-56b2-46c8-a234-e913b17ea98b"
+database_name = "assistidos-db-v2"
+database_id = "9f4c9a94-e4be-4d94-80c5-46c029e902bf"
