@@ -704,27 +704,6 @@ export default function Home() {
           </div>
 
 
-          <div className="section-title">8. QUAL A SUA DEMANDA PARA A DEFENSORIA</div>
-          
-          <div className="form-group full-width">
-            <textarea name="demandaDefensoria" value={formData.demandaDefensoria || ''} onChange={handleChange}></textarea>
-          </div>
-
-          <div className="form-group full-width">
-            <label>DEMANDAS POSTERIORES A REGULARIZAÇÃO DE DOCUMENTAÇÃO BÁSICA:</label>
-            <textarea name="demandasPosteriores" value={formData.demandasPosteriores || ''} onChange={handleChange}></textarea>
-          </div>
-
-          <div className="form-group full-width">
-            <label>QUAL ÓRGÃO DEVE SER ENCAMINHADO?</label>
-            <input type="text" name="orgaoEncaminhado" value={formData.orgaoEncaminhado || ''} onChange={handleChange} />
-          </div>
-
-          <div className="form-group full-width" style={{marginTop: '20px'}}>
-            <label>OBSERVAÇÕES ADICIONAIS:</label>
-            <textarea name="observacoes" value={formData.observacoes || ''} onChange={handleChange} placeholder="Anotações gerais da visita/atendimento"></textarea>
-          </div>
-
           <button type="submit" className="submit-btn">Finalizar e Salvar Dados</button>
 
         </form>
