@@ -303,13 +303,28 @@ export default function Home() {
               <label className="radio-label"><input type="radio" name="possuiDeficiencia" value="true" onChange={() => handleRadioChange("possuiDeficiencia", true)} checked={formData.possuiDeficiencia === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="possuiDeficiencia" value="false" onChange={() => handleRadioChange("possuiDeficiencia", false)} checked={formData.possuiDeficiencia === false} /> Não</label>
             </div>
-            {formData.possuiDeficiencia === true && (
-              <>
-                <label style={{marginLeft: '15px'}}>QUAL?</label>
-                <input type="text" name="qualDeficiencia" value={formData.qualDeficiencia || ''} onChange={handleChange} />
-              </>
-            )}
           </div>
+
+          {formData.possuiDeficiencia === true && (
+            <div className="form-group full-width" style={{display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start'}}>
+              <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px'}}>
+                <label>TIPO DE DEFICIÊNCIA:</label>
+                <div className="radio-group" style={{flexWrap: 'wrap', marginLeft: 0}}>
+                  <label className="radio-label"><input type="checkbox" name="defMental" onChange={handleChange} checked={!!formData.defMental} /> Mental</label>
+                  <label className="radio-label"><input type="checkbox" name="defIntelectual" onChange={handleChange} checked={!!formData.defIntelectual} /> Intelectual</label>
+                  <label className="radio-label"><input type="checkbox" name="defMotora" onChange={handleChange} checked={!!formData.defMotora} /> Motora</label>
+                  <label className="radio-label"><input type="checkbox" name="defFisica" onChange={handleChange} checked={!!formData.defFisica} /> Física</label>
+                  <label className="radio-label"><input type="checkbox" name="defOutros" onChange={handleChange} checked={!!formData.defOutros} /> Outros</label>
+                </div>
+              </div>
+              {formData.defOutros && (
+                <div style={{display: 'flex', alignItems: 'center', width: '100%', gap: '10px'}}>
+                  <label style={{whiteSpace: 'nowrap'}}>ESPECIFIQUE:</label>
+                  <input type="text" name="qualDeficiencia" value={formData.qualDeficiencia || ''} onChange={handleChange} style={{flexGrow: 1}} placeholder="Qual deficiência?" />
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="form-group full-width">
             <label>ENDEREÇO:</label>

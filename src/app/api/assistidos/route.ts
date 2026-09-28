@@ -25,6 +25,17 @@ export async function POST(request: Request) {
     let data = await request.json();
     const prisma = getPrisma(request);
     
+    // Tratamento de Deficiência
+    const defs = [];
+    if (data.defMental) defs.push("Mental");
+    if (data.defIntelectual) defs.push("Intelectual");
+    if (data.defMotora) defs.push("Motora");
+    if (data.defFisica) defs.push("Física");
+    if (data.defOutros && data.qualDeficiencia) defs.push(`Outros (${data.qualDeficiencia})`);
+    else if (data.defOutros) defs.push("Outros");
+    else if (data.qualDeficiencia && defs.length === 0) defs.push(data.qualDeficiencia);
+    if (defs.length > 0) data.qualDeficiencia = defs.join(", ");
+    
     // Tratamento de Documentos
     const docs = [];
     if (data.docRG) docs.push("RG");
