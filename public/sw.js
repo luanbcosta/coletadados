@@ -1,4 +1,4 @@
-const CACHE_NAME = 'defensoria-v1';
+const CACHE_NAME = 'defensoria-v2';
 
 // Assets to cache on install (app shell)
 const APP_SHELL = [
