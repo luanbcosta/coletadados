@@ -514,14 +514,6 @@ export default function Home() {
           )}
 
           <div className="form-group">
-            <label>EXERCE TRABALHO DOMÉSTICO NO PRÓPRIO DOMICÍLIO?</label>
-            <div className="radio-group">
-              <label className="radio-label"><input type="radio" name="exerceTrabalhoDomesticoDomicilio" value="true" onChange={() => handleRadioChange("exerceTrabalhoDomesticoDomicilio", true)} checked={formData.exerceTrabalhoDomesticoDomicilio === true} /> Sim</label>
-              <label className="radio-label"><input type="radio" name="exerceTrabalhoDomesticoDomicilio" value="false" onChange={() => handleRadioChange("exerceTrabalhoDomesticoDomicilio", false)} checked={formData.exerceTrabalhoDomesticoDomicilio === false} /> Não</label>
-            </div>
-          </div>
-
-          <div className="form-group">
             <label>RECEBE BENEFÍCIO DO GOVERNO?</label>
             <div className="radio-group">
               <label className="radio-label"><input type="radio" name="recebeBeneficio" value="true" onChange={() => handleRadioChange("recebeBeneficio", true)} checked={formData.recebeBeneficio === true} /> Sim</label>
@@ -533,8 +525,10 @@ export default function Home() {
             <div className="form-group full-width">
               <label>QUAIS?</label>
               <div className="radio-group" style={{flexWrap: 'wrap'}}>
-                <label className="radio-label"><input type="checkbox" name="benBolsaFamilia" onChange={handleChange} checked={!!formData.benBolsaFamilia} /> Bolsa Família</label>
                 <label className="radio-label"><input type="checkbox" name="benBPC" onChange={handleChange} checked={!!formData.benBPC} /> BPC</label>
+                <label className="radio-label"><input type="checkbox" name="benTarifaZero" onChange={handleChange} checked={!!formData.benTarifaZero} /> Tarifa Zero</label>
+                <label className="radio-label"><input type="checkbox" name="benBolsaFamilia" onChange={handleChange} checked={!!formData.benBolsaFamilia} /> Bolsa Família</label>
+                <label className="radio-label"><input type="checkbox" name="benPeDeMeia" onChange={handleChange} checked={!!formData.benPeDeMeia} /> Pé de Meia</label>
                 <label className="radio-label"><input type="checkbox" name="benOutros" onChange={handleChange} checked={!!formData.benOutros} /> Outros</label>
                 {formData.benOutros && (
                   <input type="text" name="quaisBeneficios" value={formData.quaisBeneficios || ''} onChange={handleChange} style={{marginLeft: '15px'}} placeholder="Especifique" />
@@ -554,13 +548,6 @@ export default function Home() {
               <label className="radio-label"><input type="radio" name="escolaridadeStatus" value="Cursando" onChange={(e) => handleRadioChange("escolaridadeStatus", e.target.value)} checked={formData.escolaridadeStatus === "Cursando"} /> Cursando</label>
               <label className="radio-label"><input type="radio" name="escolaridadeStatus" value="Nunca Estudou" onChange={(e) => handleRadioChange("escolaridadeStatus", e.target.value)} checked={formData.escolaridadeStatus === "Nunca Estudou"} /> Nunca Estudou</label>
             </div>
-            <label style={{marginLeft: '15px'}}>ANO/GRAU:</label>
-            <input type="text" name="escolaridadeAno" value={formData.escolaridadeAno || ''} onChange={handleChange} style={{width: '120px', flexGrow: 0}} />
-          </div>
-
-          <div className="form-group full-width" style={{display: 'block'}}>
-            <label style={{display: 'block', marginBottom: '10px'}}>QUAIS ESCOLAS SERVEM À ILHA/POVOADO?</label>
-            <input type="text" name="quaisEscolasServemIlhaPovoados" value={formData.quaisEscolasServemIlhaPovoados || ''} onChange={handleChange} style={{width: '100%'}} />
           </div>
 
           <div className="form-group">

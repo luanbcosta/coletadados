@@ -42,8 +42,10 @@ export async function POST(request: Request) {
     
     // Tratamento de Benefícios
     const bens = [];
-    if (data.benBolsaFamilia) bens.push("Bolsa Família");
     if (data.benBPC) bens.push("BPC");
+    if (data.benTarifaZero) bens.push("Tarifa Zero");
+    if (data.benBolsaFamilia) bens.push("Bolsa Família");
+    if (data.benPeDeMeia) bens.push("Pé de Meia");
     if (data.benOutros) bens.push("Outros");
     if (bens.length > 0) data.quaisBeneficios = bens.join(", ") + (data.quaisBeneficios ? " - " + data.quaisBeneficios : "");
     
