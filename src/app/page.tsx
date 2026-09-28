@@ -556,15 +556,50 @@ export default function Home() {
               <label className="radio-label"><input type="radio" name="possuiFilhos" value="true" onChange={() => handleRadioChange("possuiFilhos", true)} checked={formData.possuiFilhos === true} /> Sim</label>
               <label className="radio-label"><input type="radio" name="possuiFilhos" value="false" onChange={() => handleRadioChange("possuiFilhos", false)} checked={formData.possuiFilhos === false} /> Não</label>
             </div>
-            {formData.possuiFilhos === true && (
-              <>
-                <label style={{marginLeft: '15px'}}>QUANTOS?</label>
-                <input type="text" name="quantosFilhos" value={formData.quantosFilhos || ''} onChange={handleChange} style={{width: '60px', flexGrow: 0}} />
-                <label style={{marginLeft: '15px'}}>IDADE(S):</label>
-                <input type="text" name="idadeFilhos" value={formData.idadeFilhos || ''} onChange={handleChange} placeholder="Ex: 10, 13 e 25 anos" />
-              </>
-            )}
           </div>
+
+          {formData.possuiFilhos === true && (
+            <div className="form-group full-width" style={{display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-start'}}>
+              <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px'}}>
+                <label>QUANTIDADE DE FILHOS:</label>
+                <div className="radio-group" style={{flexWrap: 'wrap', marginLeft: 0}}>
+                  {['1', '2', '3', '4', '5', 'Mais de 5'].map((qtd) => (
+                    <label key={qtd} className="radio-label">
+                      <input 
+                        type="radio" 
+                        name="quantosFilhos" 
+                        value={qtd} 
+                        onChange={(e) => handleRadioChange("quantosFilhos", e.target.value)} 
+                        checked={formData.quantosFilhos === qtd} 
+                      /> {qtd}
+                    </label>
+                  ))}
+                </div>
+                {formData.quantosFilhos === 'Mais de 5' && (
+                  <input 
+                    type="number" 
+                    name="quantosFilhosMais" 
+                    value={formData.quantosFilhosMais || ''} 
+                    onChange={handleChange} 
+                    placeholder="Quantos?" 
+                    style={{width: '90px', marginLeft: '5px'}} 
+                  />
+                )}
+              </div>
+
+              <div style={{display: 'flex', alignItems: 'center', width: '100%', gap: '10px'}}>
+                <label style={{whiteSpace: 'nowrap'}}>IDADE(S):</label>
+                <input 
+                  type="text" 
+                  name="idadeFilhos" 
+                  value={formData.idadeFilhos || ''} 
+                  onChange={handleChange} 
+                  placeholder="Ex: 10, 13 e 25 anos" 
+                  style={{flexGrow: 1}}
+                />
+              </div>
+            </div>
+          )}
 
 
           <div className="section-title">6. DESPESAS MENSAIS (ASSINALE SE HOUVER E INFORME O VALOR APROXIMADO)</div>

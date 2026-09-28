@@ -65,6 +65,7 @@ export async function POST(request: Request) {
     if (data.transporte === "Outros" && data.transporteOutros) data.transporte = data.transporteOutros;
     if (data.propriedadeInternet) data.tipoConexaoInternet = (data.tipoConexaoInternet || "") + " (" + data.propriedadeInternet + ")";
     if (data.escolaridadeStatus) data.escolaridade = data.escolaridadeStatus + (data.escolaridadeAno ? " - " + data.escolaridadeAno : "");
+    if (data.quantosFilhos === "Mais de 5" && data.quantosFilhosMais) data.quantosFilhos = "Mais de 5 (" + data.quantosFilhosMais + ")";
 
     // Filtrar estritamente apenas os campos que existem no schema do Prisma
     const validKeys = [
