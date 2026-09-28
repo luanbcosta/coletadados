@@ -234,11 +234,33 @@ export default function Home() {
             <label>DATA NASC.:</label>
             <input type="date" name="dataNascimento" value={formData.dataNascimento || ''} onChange={handleChange} />
             
-            <label style={{marginLeft: '15px'}}>IDADE:</label>
-            <input type="number" name="idade" value={formData.idade || ''} onChange={handleChange} style={{width: '60px', flexGrow: 0}} />
-            
             <label style={{marginLeft: '15px'}}>NATURALIDADE:</label>
             <input type="text" name="naturalidade" value={formData.naturalidade || ''} onChange={handleChange} />
+          </div>
+
+          <div className="form-group">
+            <label>QUAL É A SUA FAIXA ETÁRIA?</label>
+            <div className="radio-group" style={{flexWrap: 'wrap'}}>
+              {[
+                'Até 17 anos',
+                '18 a 24 anos',
+                '25 a 34 anos',
+                '35 a 44 anos',
+                '45 a 54 anos',
+                '55 a 64 anos',
+                '65 anos ou mais'
+              ].map((faixa) => (
+                <label key={faixa} className="radio-label">
+                  <input 
+                    type="radio" 
+                    name="idade" 
+                    value={faixa} 
+                    onChange={(e) => handleRadioChange("idade", e.target.value)} 
+                    checked={formData.idade === faixa} 
+                  /> {faixa}
+                </label>
+              ))}
+            </div>
           </div>
 
           <div className="form-group">
