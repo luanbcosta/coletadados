@@ -437,9 +437,31 @@ export default function Home() {
             )}
           </div>
 
-          <div className="form-group full-width">
+          <div className="form-group">
             <label>QUANTOS CÔMODOS?</label>
-            <input type="text" name="quantosComodosEDescricao" value={formData.quantosComodosEDescricao || ''} onChange={handleChange} />
+            <div className="radio-group" style={{flexWrap: 'wrap'}}>
+              {['1', '2', '3', '4', '5', 'Mais de 5'].map((qtd) => (
+                <label key={qtd} className="radio-label">
+                  <input 
+                    type="radio" 
+                    name="quantosComodosEDescricao" 
+                    value={qtd} 
+                    onChange={(e) => handleRadioChange("quantosComodosEDescricao", e.target.value)} 
+                    checked={formData.quantosComodosEDescricao === qtd} 
+                  /> {qtd}
+                </label>
+              ))}
+            </div>
+            {formData.quantosComodosEDescricao === 'Mais de 5' && (
+              <input 
+                type="number" 
+                name="quantosComodosMais" 
+                value={formData.quantosComodosMais || ''} 
+                onChange={handleChange} 
+                placeholder="Quantos?" 
+                style={{width: '90px', marginLeft: '10px'}} 
+              />
+            )}
           </div>
 
           <div className="form-group">
